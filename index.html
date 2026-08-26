@@ -370,6 +370,88 @@
   .tab-btn.tab-restrito { opacity: .6; }
   .tab-btn.tab-restrito:hover { opacity: 1; }
 
+  /* ── MODAL TCLE ── */
+  .tcle-box {
+    background: var(--branco);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 780px;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 48px rgba(0,0,0,.28);
+    overflow: hidden;
+  }
+  .tcle-header {
+    background: #f8f9f8;
+    border-bottom: 2px solid var(--cinza-2);
+    padding: 16px 24px 12px;
+    flex-shrink: 0;
+  }
+  .tcle-header-logos {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .tcle-logo-ifrj { display: flex; align-items: center; gap: 10px; }
+  .ifrj-cubos { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 36px; }
+  .ifrj-cubos span { display: block; width: 16px; height: 16px; border-radius: 2px; }
+  .ifrj-texto { display: flex; flex-direction: column; font-size: 10px; color: var(--texto-lt); line-height: 1.4; }
+  .ifrj-texto strong { font-size: 11px; color: var(--texto); }
+  .tcle-header-info {
+    font-size: 11px; color: var(--texto-lt); line-height: 1.6;
+    border-left: 2px solid var(--cinza-2); padding-left: 16px;
+    display: flex; flex-direction: column;
+  }
+  .tcle-header-info strong { font-size: 12px; color: var(--texto); }
+  .tcle-subtitulo {
+    font-size: 11.5px; color: var(--texto-lt); font-style: italic;
+    border-top: 1px solid var(--cinza-2); padding-top: 8px; margin-top: 4px;
+  }
+  .tcle-corpo {
+    overflow-y: auto; padding: 24px 28px; flex: 1;
+    font-size: 13.5px; line-height: 1.75; color: var(--texto);
+  }
+  .tcle-corpo h2 {
+    font-family: 'DM Serif Display', serif; font-size: 1.25rem;
+    text-align: center; color: var(--verde); margin-bottom: 4px;
+  }
+  .tcle-resolucao { text-align: center; font-size: 12px; color: var(--cinza-3); margin-bottom: 18px; }
+  .tcle-corpo p { margin-bottom: 14px; text-align: justify; }
+  .tcle-assinaturas { margin: 24px 0 16px; padding-top: 16px; border-top: 1px solid var(--cinza-2); }
+  .tcle-assinatura-bloco { max-width: 360px; }
+  .tcle-linha-assinatura { border-bottom: 1px solid var(--texto); margin-bottom: 6px; height: 36px; }
+  .tcle-assinatura-bloco p { font-size: 12px; text-align: center; color: var(--texto-lt); margin-bottom: 6px; }
+  .tcle-info-pesq { font-size: 11.5px !important; text-align: left !important; color: var(--texto-lt); margin-top: 8px; }
+  .tcle-declaracao {
+    background: var(--verde-lt); border: 1.5px solid var(--verde-bd);
+    border-radius: var(--radius); padding: 14px 18px;
+    margin: 20px 0 12px; font-size: 13.5px; text-align: center;
+  }
+  .tcle-aviso-fisico {
+    font-size: 12px !important; color: var(--laranja) !important;
+    font-weight: 600; margin-top: 8px !important; margin-bottom: 0 !important; text-align: center !important;
+  }
+  .tcle-rodape {
+    font-size: 11px; color: var(--cinza-3);
+    border-top: 1px solid var(--cinza-2); padding-top: 12px; margin-top: 16px; text-align: center;
+  }
+  .tcle-acoes { border-top: 2px solid var(--cinza-2); padding: 16px 24px; background: #fafafa; flex-shrink: 0; }
+  .tcle-scroll-aviso {
+    font-size: 12px; color: var(--laranja); font-weight: 600;
+    text-align: center; margin-bottom: 12px;
+    animation: pulsar .9s ease-in-out infinite alternate;
+  }
+  @keyframes pulsar { from { opacity:.5; } to { opacity:1; } }
+  .tcle-check-label {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--texto); cursor: pointer; line-height: 1.5;
+  }
+  .tcle-check-label input { width:18px; height:18px; margin-top:2px; accent-color:var(--verde); flex-shrink:0; }
+  .tcle-check-label input:disabled { cursor:not-allowed; opacity:.5; }
+
   /* Modal de senha */
   .modal-overlay {
     display: none;
@@ -433,6 +515,201 @@
   }
   .btn-modal-confirmar:hover { background: var(--verde-md); }
 
+  /* ── BARRA DE PROGRESSO ── */
+  .progresso-bar {
+    background: var(--branco);
+    border-bottom: 1px solid var(--cinza-2);
+    padding: 14px 32px;
+  }
+  .progresso-inner { max-width: 860px; margin: 0 auto; }
+  .progresso-etapas {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+  .progresso-etapa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    opacity: .35;
+    transition: opacity .3s;
+  }
+  .progresso-etapa.ativa { opacity: 1; }
+  .progresso-etapa.concluida { opacity: .7; }
+  .prog-circulo {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--cinza-2);
+    color: var(--texto-lt);
+    display: grid; place-items: center;
+    font-size: 13px; font-weight: 700;
+    transition: background .3s, color .3s;
+  }
+  .progresso-etapa.ativa .prog-circulo {
+    background: var(--verde);
+    color: #fff;
+    box-shadow: 0 0 0 4px var(--verde-lt);
+  }
+  .progresso-etapa.concluida .prog-circulo {
+    background: var(--verde-md);
+    color: #fff;
+  }
+  .progresso-etapa.concluida .prog-circulo::before { content: '✓'; }
+  .progresso-etapa.concluida .prog-circulo { font-size: 0; }
+  .progresso-etapa span {
+    font-size: 11px; font-weight: 600;
+    color: var(--texto-lt); white-space: nowrap;
+  }
+  .progresso-etapa.ativa span { color: var(--verde); }
+  .progresso-linha {
+    flex: 1; height: 2px;
+    background: var(--cinza-2);
+    margin: 0 8px;
+    margin-bottom: 18px;
+    transition: background .3s;
+  }
+  .progresso-linha.concluida { background: var(--verde-md); }
+  .progresso-texto {
+    font-size: 12px; color: var(--cinza-3);
+    font-style: italic; text-align: center;
+  }
+
+  /* ── FEEDBACK DE VALIDAÇÃO ── */
+  .campo-erro {
+    border-color: #e74c3c !important;
+    background: #fff5f5 !important;
+  }
+  .msg-validacao {
+    display: none;
+    background: #fdf0f0;
+    border: 1.5px solid #e74c3c;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13.5px;
+    color: #c0392b;
+    font-weight: 500;
+  }
+  .msg-validacao.visivel { display: block; }
+
+  /* ── PAINEL DO PESQUISADOR ── */
+  .painel-acoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-painel-acao {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    background: #1a2a3a;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .btn-painel-acao:hover { background: #2D3E50; }
+  .btn-painel-acao.btn-pdf { background: var(--laranja); }
+  .btn-painel-acao.btn-pdf:hover { background: #c96a20; }
+  .painel-sync { font-size: 12px; color: var(--cinza-3); font-style: italic; }
+  .painel-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .painel-card {
+    --card-cor: #1E6B4A;
+    background: var(--branco);
+    border-top: 4px solid var(--card-cor);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .painel-card-valor {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--card-cor);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .painel-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cinza-3);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  /* Barras do gráfico */
+  .chart-barra-wrap { margin-bottom: 12px; }
+  .chart-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--texto);
+  }
+  .chart-barra-bg {
+    background: var(--cinza-2);
+    border-radius: 20px;
+    height: 14px;
+    overflow: hidden;
+  }
+  .chart-barra-fill {
+    height: 100%;
+    border-radius: 20px;
+    transition: width .6s ease;
+  }
+  /* Tabela do painel */
+  .painel-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .painel-tabela th {
+    background: #f0f2f0;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--texto-lt);
+    border-bottom: 2px solid var(--cinza-2);
+  }
+  .painel-tabela td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--cinza-2);
+    color: var(--texto);
+  }
+  .painel-tabela tr:last-child td { border-bottom: none; }
+  .painel-tabela tr:hover td { background: var(--verde-lt); }
+  .btn-pdf-linha {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 6px;
+    background: var(--laranja);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-pdf-linha:hover { background: #c96a20; }
+
+  @media print {
+    .tab-nav, .progresso-bar, .site-header, .painel-acoes,
+    .modal-overlay, .toast, nav { display: none !important; }
+    .form-panel { display: block !important; }
+    body { background: white; }
+  }
+
   /* conditional reveal */
   .conditional { display: none; margin-top: 10px; }
   .conditional.visible { display: block; }
@@ -473,9 +750,31 @@
   <button class="tab-btn tab-restrito" onclick="solicitarSenha('anamnese-b',this)">Anexo II-B · Medições 🔒</button>
   <button class="tab-btn" onclick="showTab('entrevista',this)">Anexo III · Entrevista</button>
   <button class="tab-btn tab-restrito" onclick="solicitarSenha('avaliacao',this)">Anexo IV · Avaliação do PE 🔒</button>
+  <button class="tab-btn tab-restrito painel-btn" onclick="solicitarSenha('painel',this)">📊 Painel do Pesquisador 🔒</button>
 </nav>
 
-<main class="content">
+<!-- Barra de progresso do participante -->
+<div class="progresso-bar" id="progresso-bar">
+  <div class="progresso-inner">
+    <div class="progresso-etapas">
+      <div class="progresso-etapa ativa" id="prog-1">
+        <div class="prog-circulo">1</div>
+        <span>IPAQ</span>
+      </div>
+      <div class="progresso-linha" id="linha-1"></div>
+      <div class="progresso-etapa" id="prog-2">
+        <div class="prog-circulo">2</div>
+        <span>Anamnese</span>
+      </div>
+      <div class="progresso-linha" id="linha-2"></div>
+      <div class="progresso-etapa" id="prog-3">
+        <div class="prog-circulo">3</div>
+        <span>Entrevista</span>
+      </div>
+    </div>
+    <div class="progresso-texto" id="progresso-texto">Etapa 1 de 3 — Questionário de Atividade Física</div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════
      ANEXO I – IPAQ
@@ -487,6 +786,7 @@
   </div>
 
   <form id="form-ipaq">
+    <div class="msg-validacao" id="val-ipaq">⚠ Por favor, responda todas as perguntas obrigatórias antes de continuar: Q1 (Sexo), Q2 (dias de atividade vigorosa), Q3 (dias de atividade moderada), Q5 (dias de caminhada), Q8 e Q9 (tempo sentado).</div>
 
     <!-- Identificação -->
     <div class="form-section">
@@ -657,6 +957,7 @@
   </div>
 
   <form id="form-anamnese">
+    <div class="msg-validacao" id="val-anamnese">⚠ Por favor, responda todas as perguntas obrigatórias antes de continuar: Q10 (Área de formação), Q11 (Tempo de atuação), Q13 (Transporte), Q14 (Horas no mestrado) e Q15 (Restrição médica).</div>
 
     <div class="form-section" style="margin-bottom:8px">
       <div class="section-header" style="background:var(--verde);">Identificação do Participante</div>
@@ -1104,7 +1405,170 @@
   </form>
 </section>
 
+<!-- ══════════════════════════════════════════════
+     PAINEL DO PESQUISADOR
+══════════════════════════════════════════════ -->
+<section id="tab-painel" class="form-panel">
+  <div class="panel-intro" style="background:#1a2a3a;border-color:#2D6A9F;color:#a8c8e8">
+    <strong style="color:#fff">📊 Painel do Pesquisador — PROSA</strong>
+    Dados coletados em tempo real via Google Sheets. Clique em "Atualizar" para sincronizar.
+  </div>
+
+  <div class="painel-acoes">
+    <button class="btn-painel-acao" onclick="carregarPainel()">🔄 Atualizar dados</button>
+    <button class="btn-painel-acao btn-pdf" onclick="exportarPDF()">📄 Exportar PDF</button>
+    <span class="painel-sync" id="painel-sync">—</span>
+  </div>
+
+  <!-- Cards de resumo -->
+  <div class="painel-cards" id="painel-cards">
+    <div class="painel-card">
+      <div class="painel-card-valor" id="pc-total">—</div>
+      <div class="painel-card-label">Participantes</div>
+    </div>
+    <div class="painel-card" style="--card-cor:#2D8B62">
+      <div class="painel-card-valor" id="pc-ipaq">—</div>
+      <div class="painel-card-label">IPAQ respondidos</div>
+    </div>
+    <div class="painel-card" style="--card-cor:#2D6A9F">
+      <div class="painel-card-valor" id="pc-anamnese">—</div>
+      <div class="painel-card-label">Anamneses</div>
+    </div>
+    <div class="painel-card" style="--card-cor:#8B5CF6">
+      <div class="painel-card-valor" id="pc-entrevista">—</div>
+      <div class="painel-card-label">Entrevistas</div>
+    </div>
+  </div>
+
+  <!-- Distribuição IPAQ -->
+  <div class="form-section" id="secao-ipaq-dist">
+    <div class="section-header" style="background:#2D8B62">Distribuição por Nível de Atividade Física (IPAQ)</div>
+    <div class="section-body">
+      <div id="ipaq-chart-area">
+        <p style="color:var(--cinza-3);font-size:13px;text-align:center;padding:20px 0">Clique em "Atualizar" para carregar os dados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Distribuição por Sexo -->
+  <div class="form-section" id="secao-sexo-dist">
+    <div class="section-header" style="background:#2D6A9F">Distribuição por Sexo</div>
+    <div class="section-body">
+      <div id="sexo-chart-area">
+        <p style="color:var(--cinza-3);font-size:13px;text-align:center;padding:20px 0">Clique em "Atualizar" para carregar os dados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela de participantes -->
+  <div class="form-section">
+    <div class="section-header" style="background:#1a2a3a">Lista de Participantes</div>
+    <div class="section-body" style="overflow-x:auto">
+      <table class="painel-tabela" id="painel-tabela">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Data</th>
+            <th>Formulário</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody id="painel-tbody">
+          <tr><td colspan="6" style="text-align:center;color:var(--cinza-3);padding:20px">Clique em "Atualizar" para carregar.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<!-- Modal TCLE -->
+<div class="modal-overlay open" id="tcle-overlay">
+  <div class="tcle-box">
+
+    <!-- Cabeçalho -->
+    <div class="tcle-header">
+      <div class="tcle-header-logos">
+        <div class="tcle-logo-ifrj">
+          <div class="ifrj-cubos">
+            <span style="background:#006400"></span><span style="background:#ffcc00"></span>
+            <span style="background:#006400"></span><span style="background:#006400"></span>
+          </div>
+          <div class="ifrj-texto">
+            <strong>INSTITUTO FEDERAL</strong>
+            <span>DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA</span>
+            <span>Rio de Janeiro</span>
+          </div>
+        </div>
+        <div class="tcle-header-info">
+          <strong>Ministério da Educação</strong>
+          Instituto Federal de Educação, Ciência e Tecnologia do Rio de Janeiro – IFRJ
+          Comitê de Ética em Pesquisa – CEP IFRJ
+        </div>
+      </div>
+      <div class="tcle-subtitulo">
+        PROSA – Programa Institucional de Promoção da Saúde Ativa: práticas de promoção da saúde para discentes do ProfEPT do IFRJ – Campus Mesquita.
+      </div>
+    </div>
+
+    <!-- Corpo do TCLE -->
+    <div class="tcle-corpo">
+      <h2>Termo de Consentimento Livre e Esclarecido</h2>
+      <p class="tcle-resolucao">(De acordo com as Normas das Resoluções CNS nº 466/12)</p>
+
+      <p>Você está sendo convidado para participar da pesquisa <strong>"PROSA – Programa Institucional de Promoção da Saúde Ativa: práticas de promoção da saúde para discentes do Programa de Pós-Graduação em Educação Profissional e Tecnológica do IFRJ – Campus Mesquita"</strong>. Você foi selecionado ser discente regularmente matriculado(a) no Programa de Pós-Graduação em Educação Profissional e Tecnológica (ProfEPT) do Instituto Federal do Rio de Janeiro – Campus Mesquita. Esta pesquisa tem por objetivo <strong>compreender e analisar como práticas estruturadas de promoção da saúde podem contribuir para o bem-estar e para a formação humana integral dos discentes do programa</strong>. Entre as atividades previstas, pretendemos realizar <strong>rodas de conversa, práticas de consciência corporal e alongamento, exercícios respiratórios e momentos de reflexão coletiva sobre saúde, autocuidado e organização da rotina acadêmica</strong>. Essas atividades fazem parte do desenvolvimento do Produto Educacional denominado <strong>PROSA – Programa Institucional de Promoção da Saúde Ativa</strong>. Poderão participar da pesquisa <strong>discentes regularmente matriculados no ProfEPT do IFRJ – Campus Mesquita que manifestarem interesse voluntário em participar do estudo</strong>. Estima-se a participação de até 15 participantes. As atividades ocorrerão em encontros previamente agendados e terão duração aproximada de 40 a 60 minutos. Sua participação não é obrigatória. A qualquer momento você pode desistir de participar e retirar seu consentimento. Sua recusa não trará nenhum prejuízo em sua relação com o (a) pesquisador (a) e nem com qualquer setor desta Instituição.</p>
+
+      <p>Os riscos relacionados com a sua participação nesta pesquisa são: mínimos e podendo envolver eventual desconforto durante a participação nas rodas de conversa ou durante as práticas corporais leves. Para minimizar esses riscos, as atividades serão conduzidas de forma voluntária, respeitando os limites físicos e emocionais de cada participante, sendo possível interromper a participação a qualquer momento. Serão coletadas pelo pesquisador informações antropométricas e de composição corporal dos participantes por meio de avaliação realizada com balança de bioimpedância digital, incluindo medidas de peso corporal, percentual de gordura, massa muscular, percentual de água corporal, gordura visceral, massa óssea, metabolismo basal e outros indicadores fisiológicos fornecidos pelo equipamento. Também será realizada a aferição da pressão arterial utilizando aparelho digital automático, permitindo a obtenção dos valores de pressão arterial sistólica e diastólica. Os procedimentos serão realizados em ambiente adequado, com o participante em posição confortável e em repouso por aproximadamente cinco minutos antes da aferição da pressão arterial, seguindo recomendações básicas para esse tipo de medida. Trata-se de procedimentos <strong>não invasivos e de risco mínimo</strong>, realizados exclusivamente para fins de pesquisa e caracterização do perfil de saúde dos participantes. Os dados coletados serão utilizados apenas para fins científicos, sendo garantido o <strong>sigilo, a confidencialidade e o anonimato</strong> das informações obtidas. Caso sejam identificados valores alterados de pressão arterial ou outros indicadores que possam sugerir alterações relevantes na condição de saúde, o participante será orientado a procurar avaliação em serviço de saúde. Como benefício, espera-se que a participação no estudo contribua para <strong>reflexões sobre saúde, autocuidado e qualidade de vida no contexto da pós-graduação</strong>, além de possibilitar o desenvolvimento de práticas institucionais de promoção da saúde no ambiente acadêmico.</p>
+
+      <p>As informações obtidas por meio desta pesquisa serão confidenciais e asseguramos o sigilo sobre a sua participação. Sua colaboração é importante para o <strong>desenvolvimento de estratégias de promoção da saúde no contexto da pós-graduação profissional em Educação Profissional e Tecnológica</strong>. Os dados serão divulgados de forma a não possibilitar a sua identificação, mas poderão ser divulgados em apresentações ou publicações com fins científicos ou educativos. Você tem direito de conhecer e acompanhar os resultados dessa pesquisa. Participar desta pesquisa não implicará em nenhum custo para você, e, como voluntário, você também não receberá qualquer valor em dinheiro como compensação pela participação. Você será ressarcido de qualquer custo que tiver relativo à pesquisa e será indenizado por danos eventuais decorrentes da sua participação na pesquisa.</p>
+
+      <p>Você receberá uma via assinada pelo pesquisador, que deverá ser guardada, com o e-mail de contato destes pesquisadores que participarão da pesquisa e do Comitê de Ética em Pesquisa que a aprovou, para maiores esclarecimentos. Se você tiver alguma consideração ou dúvida sobre a ética da pesquisa, entre em contato com o Comitê de Ética em Pesquisa (CEP) do Instituto Federal do Rio de Janeiro, Rua Buenos Aires, 256, 6º andar sala 601, Centro, Rio de Janeiro — telefone 3233-8034 de terça a sexta-feira, das 9 às 14 horas, ou por meio do e-mail: <strong>cep@ifrj.edu.br</strong>. O Comitê de Ética em Pesquisa é um órgão que controla as questões éticas das pesquisas na instituição e tem como uma das principais funções proteger os participantes de qualquer problema. Esse documento possui duas vias, sendo uma sua e a outra do(a) pesquisador(a) responsável.</p>
+
+      <div class="tcle-assinaturas">
+        <div class="tcle-assinatura-bloco">
+          <div class="tcle-linha-assinatura"></div>
+          <p>Assinatura d(a) pesquisador(a) responsável</p>
+          <p class="tcle-info-pesq">
+            Instituição – Instituto Federal de Educação, Ciência e Tecnologia<br>
+            Nome do pesquisador: Bruno Cesar dos Santos<br>
+            Tel: (21) 96892-0770 · E-mail: brunosantos020@rioeduca.net
+          </p>
+        </div>
+      </div>
+
+      <div class="tcle-declaracao">
+        <strong>Declaro que entendi os objetivos, os riscos e os benefícios da pesquisa, e os meus direitos como participante da pesquisa e concordo em participar.</strong>
+        <p class="tcle-aviso-fisico">⚠ A assinatura física deste termo será coletada pelo pesquisador no primeiro encontro presencial.</p>
+      </div>
+
+      <div class="tcle-rodape">
+        CEP IFRJ — R. Buenos Aires, 256 – 6º andar, sala 601, Centro, Rio de Janeiro - RJ, 20061-002<br>
+        Tel: (21) 3233-8034 · E-mail: cep@ifrj.edu.br
+      </div>
+    </div>
+
+    <!-- Rodapé de ação -->
+    <div class="tcle-acoes">
+      <div class="tcle-scroll-aviso" id="tcle-scroll-aviso">↓ Role até o final para continuar</div>
+      <label class="tcle-check-label" id="tcle-check-label">
+        <input type="checkbox" id="tcle-aceite" disabled>
+        <span>Li o Termo de Consentimento Livre e Esclarecido na íntegra e estou ciente de que a assinatura física será coletada presencialmente pelo pesquisador.</span>
+      </label>
+      <button class="btn-modal-confirmar" id="tcle-btn" disabled
+              onclick="confirmarTCLE()"
+              style="width:100%;padding:14px;font-size:15px;margin-top:12px;opacity:.5;cursor:not-allowed">
+        Continuar para identificação →
+      </button>
+      <p style="font-size:11px;color:var(--cinza-3);text-align:center;margin-top:10px;margin-bottom:0">
+        CAAE 94355125.5.0000.5268 · Parecer 8.333.591 · Aprovado em 06/04/2026
+      </p>
+    </div>
+
+  </div>
+</div>
 
 <!-- Tela de login do participante -->
 <div class="modal-overlay open" id="login-overlay">
@@ -1202,6 +1666,36 @@
   document.querySelector('input[name="nome"]').addEventListener('input', propagarId);
   // ─────────────────────────────────────────────────────────
 
+  // ── TCLE — liberar aceite após leitura completa ──────────
+  (function() {
+    var corpo = document.querySelector('.tcle-corpo');
+    var aviso = document.getElementById('tcle-scroll-aviso');
+    var check = document.getElementById('tcle-aceite');
+    var btn   = document.getElementById('tcle-btn');
+
+    function verificarScroll() {
+      var margem = 40;
+      var chegouAoFim = corpo.scrollTop + corpo.clientHeight >= corpo.scrollHeight - margem;
+      if (chegouAoFim) {
+        check.disabled = false;
+        aviso.style.display = 'none';
+        corpo.removeEventListener('scroll', verificarScroll);
+      }
+    }
+    corpo.addEventListener('scroll', verificarScroll);
+
+    check.addEventListener('change', function() {
+      btn.disabled = !check.checked;
+      btn.style.opacity = check.checked ? '1' : '.5';
+      btn.style.cursor  = check.checked ? 'pointer' : 'not-allowed';
+    });
+  })();
+
+  function confirmarTCLE() {
+    document.getElementById('tcle-overlay').classList.remove('open');
+    iniciarLogin();
+  }
+
   // ── Controle de acesso restrito ──────────────────────────
   // Senha do pesquisador — altere aqui conforme necessário
   const SENHA_PESQUISADOR = '38872095';
@@ -1242,21 +1736,175 @@
   });
   // ─────────────────────────────────────────────────────────
 
-  // Abas
-  function showTab(name, btn) {
-    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  // Condicional genérico
+  // ── CONDICIONAIS ─────────────────────────────────────────
   function toggleCondicional(id) {
     document.getElementById(id).classList.toggle('visible');
   }
   function hideCondicional(id) {
     document.getElementById(id).classList.remove('visible');
   }
+
+  // ── BARRA DE PROGRESSO ───────────────────────────────────
+  const ETAPAS_PARTICIPANTE = [
+    { aba: 'ipaq',      prog: 'prog-1', texto: 'Etapa 1 de 3 — Questionário de Atividade Física' },
+    { aba: 'anamnese',  prog: 'prog-2', texto: 'Etapa 2 de 3 — Questionário de Anamnese' },
+    { aba: 'entrevista',prog: 'prog-3', texto: 'Etapa 3 de 3 — Roteiro de Entrevista' },
+  ];
+  const ABAS_SEM_PROGRESSO = ['anamnese-b', 'avaliacao'];
+  let etapaAtual = 0;
+
+  function atualizarProgresso(abaName) {
+    const idx = ETAPAS_PARTICIPANTE.findIndex(e => e.aba === abaName);
+    const barraEl = document.getElementById('progresso-bar');
+    if (idx === -1) { barraEl.style.display = 'none'; return; }
+    barraEl.style.display = '';
+    etapaAtual = idx;
+    ETAPAS_PARTICIPANTE.forEach((e, i) => {
+      const el = document.getElementById(e.prog);
+      el.classList.remove('ativa','concluida');
+      if (i < idx)      el.classList.add('concluida');
+      else if (i === idx) el.classList.add('ativa');
+    });
+    // linhas
+    for (let i = 1; i <= 2; i++) {
+      const l = document.getElementById('linha-' + i);
+      l.classList.toggle('concluida', i <= idx);
+    }
+    document.getElementById('progresso-texto').textContent = ETAPAS_PARTICIPANTE[idx].texto;
+  }
+
+  // Abas
+  function showTab(name, btn) {
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    atualizarProgresso(name);
+  }
+
+  // ── VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS ─────────────────────
+  const CAMPOS_OBRIGATORIOS = {
+    'form-ipaq': [
+      { tipo: 'radio', nome: 'sexo',      label: 'Q1 – Sexo' },
+      { tipo: 'radio', nome: 'ipaq_q1',   label: 'Q2 – Dias de atividade vigorosa' },
+      { tipo: 'radio', nome: 'ipaq_q3',   label: 'Q4 – Dias de atividade moderada' },
+      { tipo: 'radio', nome: 'ipaq_q5',   label: 'Q6 – Dias de caminhada' },
+    ],
+    'form-anamnese': [
+      { tipo: 'radio', nome: 'area',           label: 'Q10 – Área de formação' },
+      { tipo: 'radio', nome: 'tempo_prof',     label: 'Q11 – Tempo de atuação' },
+      { tipo: 'radio', nome: 'transporte',     label: 'Q13 – Meio de transporte' },
+      { tipo: 'radio', nome: 'h_mestrado',     label: 'Q14 – Horas no mestrado' },
+      { tipo: 'radio', nome: 'restricao',      label: 'Q15 – Restrição médica' },
+    ],
+  };
+
+  function validarForm(form) {
+    const regras = CAMPOS_OBRIGATORIOS[form.id];
+    if (!regras) return true;
+    const faltando = [];
+    regras.forEach(r => {
+      if (r.tipo === 'radio') {
+        const marcado = form.querySelector('input[name="' + r.nome + '"]:checked');
+        if (!marcado) faltando.push(r.label);
+      }
+    });
+    const msgEl = document.getElementById('val-' + form.id.replace('form-',''));
+    if (faltando.length > 0) {
+      if (msgEl) {
+        msgEl.textContent = '⚠ Responda antes de continuar: ' + faltando.join(' · ');
+        msgEl.classList.add('visivel');
+        msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return false;
+    }
+    if (msgEl) msgEl.classList.remove('visivel');
+    return true;
+  }
+
+  // ── SALVAMENTO OFFLINE (localStorage) ────────────────────
+  const STORAGE_KEY = 'prosa_offline_queue';
+
+  function salvarOffline(dados) {
+    var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    fila.push(dados);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fila));
+  }
+
+  async function tentarReenviarOffline() {
+    var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    if (fila.length === 0) return;
+    var restantes = [];
+    for (var i = 0; i < fila.length; i++) {
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(fila[i])
+        });
+      } catch (err) {
+        restantes.push(fila[i]);
+      }
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(restantes));
+    if (restantes.length < fila.length) {
+      showToast('✓ ' + (fila.length - restantes.length) + ' resposta(s) offline sincronizada(s)');
+    }
+  }
+
+  // Tentar reenviar ao recuperar conexão
+  window.addEventListener('online', tentarReenviarOffline);
+
+  // ── ENVIO PARA GOOGLE SHEETS ─────────────────────────────
+  async function enviarParaSheets(dados, btn) {
+    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
+      showToast('✓ Respostas registradas (modo local)');
+      return;
+    }
+    var textoOriginal = btn.textContent;
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      });
+      showToast('✓ Respostas salvas na planilha com sucesso');
+    } catch (err) {
+      salvarOffline(dados);
+      showToast('⚠ Sem conexão — respostas salvas localmente e serão enviadas automaticamente quando a internet voltar.');
+    } finally {
+      btn.textContent = textoOriginal;
+      btn.disabled = false;
+    }
+  }
+
+  // ── MAPA DE NAVEGAÇÃO AUTOMÁTICA ─────────────────────────
+  const PROXIMA_ABA = {
+    'form-ipaq':     { aba: 'anamnese',   label: 'Anexo II-A' },
+    'form-anamnese': { aba: 'entrevista', label: 'Anexo III' },
+  };
+
+  // ── SUBMIT DE TODOS OS FORMULÁRIOS ───────────────────────
+  document.querySelectorAll('form').forEach(function(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (!validarForm(form)) return;
+      var btn = form.querySelector('.btn-submit');
+      var dados = coletarDados(form);
+      await enviarParaSheets(dados, btn);
+      var proximo = PROXIMA_ABA[form.id];
+      if (proximo) {
+        setTimeout(function() {
+          var btnAba = Array.from(document.querySelectorAll('.tab-btn'))
+            .find(function(b) { return b.textContent.trim().indexOf(proximo.label) !== -1; });
+          if (btnAba) showTab(proximo.aba, btnAba);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1200);
+      }
+    });
+  });
 
   // Área "outra" condicional
   document.querySelectorAll('input[name="area"]').forEach(r => {
@@ -1338,16 +1986,6 @@
     }
   }
 
-  // ── SUBMIT DE TODOS OS FORMULÁRIOS ───────────────────────
-  document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = form.querySelector('.btn-submit');
-      const dados = coletarDados(form);
-      await enviarParaSheets(dados, btn);
-    });
-  });
-
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg || '✓ Respostas registradas com sucesso';
@@ -1355,8 +1993,198 @@
     setTimeout(() => t.classList.remove('show'), 3500);
   }
 
-  // Iniciar login ao carregar a página
-  iniciarLogin();
+  // ── PAINEL DO PESQUISADOR ────────────────────────────────
+  var dadosPainel = [];
+
+  async function carregarPainel() {
+    document.getElementById('painel-sync').textContent = 'Carregando…';
+    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
+      document.getElementById('painel-sync').textContent = 'Configure a URL do Apps Script primeiro.';
+      return;
+    }
+    try {
+      // Busca via GET com ?acao=listar
+      var url = SHEET_URL + '?acao=listar';
+      var resp = await fetch(url);
+      var json = await resp.json();
+      dadosPainel = json.dados || [];
+      renderizarPainel(dadosPainel);
+      document.getElementById('painel-sync').textContent =
+        'Última atualização: ' + new Date().toLocaleTimeString('pt-BR');
+    } catch (err) {
+      document.getElementById('painel-sync').textContent = 'Erro ao carregar. Verifique a conexão.';
+    }
+  }
+
+  function renderizarPainel(dados) {
+    // Códigos únicos de participantes
+    var codigos = [...new Set(dados.map(function(d) { return d.codigo || d.an_codigo || d.e_codigo || ''; }).filter(Boolean))];
+    var ipaq     = dados.filter(function(d) { return d.formulario === 'form-ipaq'; });
+    var anamnese = dados.filter(function(d) { return d.formulario === 'form-anamnese'; });
+    var entrev   = dados.filter(function(d) { return d.formulario === 'form-entrevista'; });
+
+    document.getElementById('pc-total').textContent     = codigos.length || '0';
+    document.getElementById('pc-ipaq').textContent      = ipaq.length || '0';
+    document.getElementById('pc-anamnese').textContent  = anamnese.length || '0';
+    document.getElementById('pc-entrevista').textContent= entrev.length || '0';
+
+    // Classificação IPAQ simplificada
+    renderizarBarras(ipaq);
+    renderizarSexo(ipaq);
+    renderizarTabela(dados, codigos);
+  }
+
+  function renderizarBarras(ipaq) {
+    var niveis = { 'Muito ativo': 0, 'Ativo': 0, 'Irregularmente ativo': 0, 'Sedentário': 0 };
+    var cores  = { 'Muito ativo': '#1E6B4A', 'Ativo': '#2D8B62', 'Irregularmente ativo': '#E07A30', 'Sedentário': '#c0392b' };
+
+    ipaq.forEach(function(d) {
+      var vig  = (parseInt(d.ipaq_q1) || 0) * ((parseInt(d.ipaq_q2_h)||0)*60 + (parseInt(d.ipaq_q2_m)||0)) * 2;
+      var mod  = (parseInt(d.ipaq_q3) || 0) * ((parseInt(d.ipaq_q4_h)||0)*60 + (parseInt(d.ipaq_q4_m)||0));
+      var cam  = (parseInt(d.ipaq_q5) || 0) * ((parseInt(d.ipaq_q6_h)||0)*60 + (parseInt(d.ipaq_q6_m)||0));
+      var total = vig + mod + cam;
+      var diasVig = parseInt(d.ipaq_q1) || 0;
+      var diasMod = parseInt(d.ipaq_q3) || 0;
+      if (diasVig >= 3 && vig >= 1500) niveis['Muito ativo']++;
+      else if (total >= 3000 || (diasVig >= 5 && vig >= 1500)) niveis['Muito ativo']++;
+      else if (total >= 600) niveis['Ativo']++;
+      else if (total > 0)   niveis['Irregularmente ativo']++;
+      else                  niveis['Sedentário']++;
+    });
+
+    var total = ipaq.length || 1;
+    var html = '';
+    Object.keys(niveis).forEach(function(n) {
+      var pct = Math.round((niveis[n] / total) * 100);
+      html += '<div class="chart-barra-wrap">' +
+        '<div class="chart-label"><span>' + n + '</span><span>' + niveis[n] + ' (' + pct + '%)</span></div>' +
+        '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:' + pct + '%;background:' + cores[n] + '"></div></div>' +
+        '</div>';
+    });
+    document.getElementById('ipaq-chart-area').innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado IPAQ disponível.</p>';
+  }
+
+  function renderizarSexo(dados) {
+    var contagem = { 'Masculino': 0, 'Feminino': 0, 'Não-binário': 0, 'Não declarado': 0 };
+    var cores    = { 'Masculino': '#2D6A9F', 'Feminino': '#8B5CF6', 'Não-binário': '#E07A30', 'Não declarado': '#9BA89A' };
+    var mapa     = { 'M': 'Masculino', 'F': 'Feminino', 'NB': 'Não-binário', 'ND': 'Não declarado' };
+    dados.forEach(function(d) { var k = mapa[d.sexo]; if (k) contagem[k]++; });
+    var total = dados.length || 1;
+    var html = '';
+    Object.keys(contagem).forEach(function(n) {
+      if (contagem[n] === 0) return;
+      var pct = Math.round((contagem[n] / total) * 100);
+      html += '<div class="chart-barra-wrap">' +
+        '<div class="chart-label"><span>' + n + '</span><span>' + contagem[n] + ' (' + pct + '%)</span></div>' +
+        '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:' + pct + '%;background:' + cores[n] + '"></div></div>' +
+        '</div>';
+    });
+    document.getElementById('sexo-chart-area').innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado disponível.</p>';
+  }
+
+  function renderizarTabela(dados, codigos) {
+    var tbody = document.getElementById('painel-tbody');
+    if (dados.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--cinza-3);padding:20px">Nenhum dado coletado ainda.</td></tr>';
+      return;
+    }
+    // Uma linha por submissão
+    tbody.innerHTML = dados.map(function(d) {
+      var codigo = d.codigo || d.an_codigo || d.e_codigo || d.av_codigo || '—';
+      var nome   = d.nome || d.an_nome || d.e_nome || d.av_nome || '—';
+      var email  = d.email || '—';
+      var data   = d.data_avaliacao || d.an_data || d.e_data || d.timestamp ? d.timestamp.slice(0,10) : '—';
+      var form   = (d.formulario || '—').replace('form-','').toUpperCase();
+      return '<tr>' +
+        '<td><code>' + codigo + '</code></td>' +
+        '<td>' + nome + '</td>' +
+        '<td>' + email + '</td>' +
+        '<td>' + data + '</td>' +
+        '<td>' + form + '</td>' +
+        '<td><button class="btn-pdf-linha" onclick="exportarPDFParticipante(\'' + codigo + '\')">📄 PDF</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // ── EXPORTAÇÃO PDF ───────────────────────────────────────
+  function exportarPDF() {
+    var titulo = 'PROSA – Relatório Geral – ' + new Date().toLocaleDateString('pt-BR');
+    var conteudo = '<html><head><meta charset="UTF-8"><title>' + titulo + '</title>' +
+      '<style>body{font-family:Arial,sans-serif;padding:32px;color:#1A2119}' +
+      'h1{color:#1E6B4A;font-size:20px;border-bottom:2px solid #1E6B4A;padding-bottom:8px}' +
+      'h2{color:#2D8B62;font-size:15px;margin-top:24px}' +
+      'table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}' +
+      'th{background:#1E6B4A;color:#fff;padding:8px 10px;text-align:left}' +
+      'td{padding:7px 10px;border-bottom:1px solid #eee}' +
+      'tr:nth-child(even) td{background:#f7f8f6}' +
+      '.card{display:inline-block;border:1px solid #ccc;border-radius:8px;padding:12px 20px;margin:8px;text-align:center}' +
+      '.card-valor{font-size:28px;font-weight:700;color:#1E6B4A}' +
+      '.card-label{font-size:11px;color:#666;text-transform:uppercase}' +
+      '</style></head><body>' +
+      '<h1>PROSA – Programa de Promoção da Saúde Ativa</h1>' +
+      '<p style="font-size:12px;color:#666">Pesquisador: Bruno Cesar dos Santos · ProfEPT/IFRJ · CAAE 94355125.5.0000.5268</p>' +
+      '<p style="font-size:12px;color:#666">Relatório gerado em: ' + new Date().toLocaleString('pt-BR') + '</p>' +
+      '<h2>Resumo da Coleta</h2>' +
+      '<div>' +
+      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-total').textContent) + '</div><div class="card-label">Participantes</div></div>' +
+      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-ipaq').textContent) + '</div><div class="card-label">IPAQ respondidos</div></div>' +
+      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-anamnese').textContent) + '</div><div class="card-label">Anamneses</div></div>' +
+      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-entrevista').textContent) + '</div><div class="card-label">Entrevistas</div></div>' +
+      '</div>' +
+      '<h2>Lista de Participantes</h2>' +
+      '<table><thead><tr><th>Código</th><th>Nome</th><th>E-mail</th><th>Data</th><th>Formulário</th></tr></thead><tbody>' +
+      dadosPainel.map(function(d) {
+        return '<tr><td>' + (d.codigo||d.an_codigo||d.e_codigo||'—') + '</td><td>' +
+          (d.nome||d.an_nome||d.e_nome||'—') + '</td><td>' +
+          (d.email||'—') + '</td><td>' +
+          (d.data_avaliacao||d.an_data||'—') + '</td><td>' +
+          (d.formulario||'—').replace('form-','').toUpperCase() + '</td></tr>';
+      }).join('') +
+      '</tbody></table></body></html>';
+    var janela = window.open('', '_blank');
+    janela.document.write(conteudo);
+    janela.document.close();
+    janela.print();
+  }
+
+  function exportarPDFParticipante(codigo) {
+    var registros = dadosPainel.filter(function(d) {
+      return (d.codigo || d.an_codigo || d.e_codigo || d.av_codigo) === codigo;
+    });
+    if (registros.length === 0) { showToast('Nenhum dado encontrado para este participante.'); return; }
+    var nome  = registros[0].nome || registros[0].an_nome || registros[0].e_nome || '—';
+    var email = registros[0].email || '—';
+    var conteudo = '<html><head><meta charset="UTF-8"><title>PROSA – ' + codigo + '</title>' +
+      '<style>body{font-family:Arial,sans-serif;padding:32px;color:#1A2119;font-size:13px}' +
+      'h1{color:#1E6B4A;font-size:18px;border-bottom:2px solid #1E6B4A;padding-bottom:8px}' +
+      'h2{color:#2D8B62;font-size:14px;margin-top:20px;margin-bottom:8px}' +
+      'table{width:100%;border-collapse:collapse;margin-top:8px}' +
+      'th{background:#f0f2f0;padding:7px 10px;text-align:left;font-size:11px;color:#666;border-bottom:1px solid #ccc}' +
+      'td{padding:7px 10px;border-bottom:1px solid #eee;word-break:break-word}' +
+      '</style></head><body>' +
+      '<h1>PROSA – Ficha do Participante</h1>' +
+      '<p><strong>Código:</strong> ' + codigo + ' &nbsp;|&nbsp; <strong>Nome:</strong> ' + nome + ' &nbsp;|&nbsp; <strong>E-mail:</strong> ' + email + '</p>' +
+      '<p style="font-size:11px;color:#999">Gerado em: ' + new Date().toLocaleString('pt-BR') + ' · CAAE 94355125.5.0000.5268</p>';
+
+    registros.forEach(function(r) {
+      conteudo += '<h2>' + (r.formulario||'').replace('form-','').toUpperCase() + '</h2>' +
+        '<table><thead><tr><th>Campo</th><th>Resposta</th></tr></thead><tbody>' +
+        Object.keys(r).filter(function(k) {
+          return !['email','formulario','timestamp','codigo','an_codigo','e_codigo','av_codigo',
+                   'nome','an_nome','e_nome','av_nome','an_data','e_data','av_data'].includes(k);
+        }).map(function(k) {
+          return '<tr><td>' + k + '</td><td>' + (r[k]||'—') + '</td></tr>';
+        }).join('') +
+        '</tbody></table>';
+    });
+    conteudo += '</body></html>';
+    var janela = window.open('', '_blank');
+    janela.document.write(conteudo);
+    janela.document.close();
+    janela.print();
+  }
+
+  // Login é iniciado após confirmação do TCLE (função confirmarTCLE)
 </script>
 </body>
 </html>
