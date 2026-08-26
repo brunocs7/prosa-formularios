@@ -1571,7 +1571,7 @@
 </div>
 
 <!-- Tela de login do participante -->
-<div class="modal-overlay open" id="login-overlay">
+<div class="modal-overlay" id="login-overlay">
   <div class="modal-box" style="max-width:420px">
     <div class="modal-icon">🌿</div>
     <h3>Bem-vindo ao PROSA</h3>
@@ -1923,32 +1923,39 @@
   let EMAIL_PARTICIPANTE = '';
 
   function iniciarLogin() {
-    const overlay = document.getElementById('login-overlay');
-    const nomeInput = document.getElementById('login-nome');
-    const emailInput = document.getElementById('login-email');
-    const erro = document.getElementById('login-erro');
-    const btn = document.getElementById('login-btn');
+    var overlay   = document.getElementById('login-overlay');
+    var nomeInput = document.getElementById('login-nome');
+    var emailInput= document.getElementById('login-email');
+    var erro      = document.getElementById('login-erro');
+    var btn       = document.getElementById('login-btn');
 
-    btn.addEventListener('click', () => {
-      const nome  = nomeInput.value.trim();
-      const email = emailInput.value.trim();
-      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // Remover listener anterior para evitar duplicatas
+    var btnNovo = btn.cloneNode(true);
+    btn.parentNode.replaceChild(btnNovo, btn);
+
+    function processarLogin() {
+      var nome  = nomeInput.value.trim();
+      var email = emailInput.value.trim();
+      var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       if (!nome)        { erro.textContent = 'Por favor, informe seu nome.'; return; }
       if (!emailValido) { erro.textContent = 'Informe um e-mail válido.'; return; }
 
       EMAIL_PARTICIPANTE = email;
 
-      // Preencher campo nome no Anexo I e disparar propagação
-      const campoNome = document.querySelector('input[name="nome"]');
-      campoNome.value = nome;
-      propagarId();
+      var campoNome = document.querySelector('input[name="nome"]');
+      if (campoNome) { campoNome.value = nome; propagarId(); }
 
       overlay.classList.remove('open');
+    }
+
+    btnNovo.addEventListener('click', processarLogin);
+    emailInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') processarLogin();
     });
 
     overlay.classList.add('open');
-    nomeInput.focus();
+    setTimeout(function() { nomeInput.focus(); }, 100);
   }
 
   // ── COLETA DE DADOS DO FORMULÁRIO ───────────────────────
