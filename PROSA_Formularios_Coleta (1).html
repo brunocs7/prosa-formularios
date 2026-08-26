@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROSA – Instrumentos de Coleta de Dados</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --verde:    #1E6B4A;
+    --verde-md: #2D8B62;
+    --verde-lt: #E8F5EE;
+    --verde-bd: #B8DEC9;
+    --cinza-1:  #F7F8F6;
+    --cinza-2:  #EAECE8;
+    --cinza-3:  #9BA89A;
+    --texto:    #1A2119;
+    --texto-lt: #4A5549;
+    --laranja:  #E07A30;
+    --branco:   #FFFFFF;
+    --radius:   10px;
+    --shadow:   0 2px 12px rgba(30,107,74,.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cinza-1);
+    color: var(--texto);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--verde);
+    color: #fff;
+    padding: 28px 32px 24px;
+    border-bottom: 4px solid var(--laranja);
+  }
+  .site-header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .75;
+    margin-bottom: 6px;
+  }
+  .site-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .site-header h1 em {
+    font-style: italic;
+    color: #A8DBBE;
+  }
+  .site-header .subtitle {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: .78;
+    max-width: 620px;
+  }
+  .pesquisador {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 5px 14px 5px 5px;
+    font-size: 13px;
+  }
+  .pesquisador .dot {
+    width: 28px; height: 28px;
+    background: var(--laranja);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 12px;
+  }
+
+  /* ── NAV ABAS ── */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    padding: 16px 32px 0;
+    background: var(--verde);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: rgba(255,255,255,.15);
+    color: rgba(255,255,255,.8);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,.25); color: #fff; }
+  .tab-btn.active {
+    background: var(--cinza-1);
+    color: var(--verde);
+    font-weight: 600;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  .form-panel { display: none; }
+  .form-panel.active { display: block; }
+
+  .panel-intro {
+    background: var(--verde-lt);
+    border-left: 4px solid var(--verde-md);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    color: var(--verde);
+  }
+  .panel-intro strong { display: block; font-size: 15px; margin-bottom: 4px; }
+
+  /* ── SECTION ── */
+  .form-section {
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--verde-md);
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .badge {
+    background: rgba(255,255,255,.25);
+    border-radius: 12px;
+    padding: 2px 9px;
+    font-size: 11px;
+  }
+  .section-body { padding: 20px 24px; }
+
+  /* ── QUESTÃO ── */
+  .question {
+    margin-bottom: 24px;
+  }
+  .question:last-child { margin-bottom: 0; }
+  .question label.q-label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--texto);
+    margin-bottom: 10px;
+  }
+  .question label.q-label .q-num {
+    color: var(--verde-md);
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .hint {
+    font-size: 12px;
+    color: var(--cinza-3);
+    margin-top: -6px;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  /* radio / checkbox */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    font-size: 14px;
+  }
+  .option:hover { border-color: var(--verde-md); background: var(--verde-lt); }
+  .option input[type="radio"],
+  .option input[type="checkbox"] { accent-color: var(--verde-md); width: 16px; height: 16px; cursor: pointer; }
+
+  /* Likert row */
+  .likert-table { width: 100%; border-collapse: collapse; }
+  .likert-table th {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--texto-lt);
+    text-align: center;
+    padding: 6px 4px 10px;
+    border-bottom: 2px solid var(--cinza-2);
+  }
+  .likert-table th:first-child { text-align: left; }
+  .likert-table td {
+    padding: 10px 4px;
+    text-align: center;
+    border-bottom: 1px solid var(--cinza-2);
+    font-size: 13.5px;
+  }
+  .likert-table td:first-child { text-align: left; font-size: 13.5px; padding-left: 0; }
+  .likert-table tr:last-child td { border-bottom: none; }
+  .likert-table input[type="radio"] { accent-color: var(--verde-md); width: 17px; height: 17px; cursor: pointer; }
+
+  /* time inputs */
+  .time-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .time-row label { font-size: 13px; color: var(--texto-lt); }
+  .time-row input[type="number"] {
+    width: 72px;
+    padding: 8px 10px;
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    transition: border-color .15s;
+  }
+  .time-row input[type="number"]:focus { outline: none; border-color: var(--verde-md); }
+
+  /* text inputs */
+  input[type="text"], input[type="date"], input[type="number"]:not(.time-row input),
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    background: var(--branco);
+    transition: border-color .15s;
+    resize: vertical;
+  }
+  input[type="text"]:focus,
+  input[type="date"]:focus,
+  textarea:focus { outline: none; border-color: var(--verde-md); box-shadow: 0 0 0 3px rgba(45,139,98,.12); }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 560px) { .field-grid { grid-template-columns: 1fr; } }
+
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group label { font-size: 13px; font-weight: 500; color: var(--texto-lt); }
+
+  /* open text */
+  textarea { min-height: 90px; }
+
+  /* submit */
+  .form-footer {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .btn-submit {
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 13px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-submit:hover { background: var(--verde-md); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .form-note { font-size: 12px; color: var(--cinza-3); }
+
+  /* toast */
+  .toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--verde);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: transform .35s, opacity .35s;
+    z-index: 999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* divider */
+  .divider { border: none; border-top: 1px solid var(--cinza-2); margin: 20px 0; }
+
+  /* id-banner */
+  .id-banner {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .id-item {
+    flex: 1;
+    min-width: 200px;
+    background: var(--verde-lt);
+    border: 1.5px solid var(--verde-bd);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .id-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--verde-md);
+  }
+  .id-value {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+    color: var(--verde);
+    letter-spacing: .02em;
+  }
+  .id-note {
+    margin-top: 10px;
+    font-size: 11.5px;
+    color: var(--cinza-3);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .id-note::before {
+    content: '🔒';
+    font-style: normal;
+    font-size: 12px;
+  }
+
+  /* aba restrita */
+  .tab-btn.tab-restrito { opacity: .6; }
+  .tab-btn.tab-restrito:hover { opacity: 1; }
+
+  /* Modal de senha */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.22);
+    text-align: center;
+  }
+  .modal-box .modal-icon { font-size: 36px; margin-bottom: 12px; }
+  .modal-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--verde);
+    margin-bottom: 6px;
+  }
+  .modal-box p { font-size: 13px; color: var(--texto-lt); margin-bottom: 18px; }
+  .modal-box input[type="password"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    letter-spacing: .25em;
+    margin-bottom: 10px;
+    transition: border-color .15s;
+  }
+  .modal-box input[type="password"]:focus {
+    outline: none;
+    border-color: var(--verde-md);
+    box-shadow: 0 0 0 3px rgba(45,139,98,.12);
+  }
+  .modal-erro { font-size: 12px; color: #c0392b; min-height: 18px; margin-bottom: 10px; }
+  .modal-actions { display: flex; gap: 10px; }
+  .btn-modal-cancelar {
+    flex: 1; padding: 10px;
+    border: 1.5px solid var(--cinza-2); border-radius: 8px;
+    background: none; font-family: 'Inter', sans-serif;
+    font-size: 14px; cursor: pointer; color: var(--texto-lt);
+    transition: background .15s;
+  }
+  .btn-modal-cancelar:hover { background: var(--cinza-2); }
+  .btn-modal-confirmar {
+    flex: 2; padding: 10px; border: none; border-radius: 8px;
+    background: var(--verde); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    font-weight: 600; cursor: pointer; transition: background .15s;
+  }
+  .btn-modal-confirmar:hover { background: var(--verde-md); }
+
+  /* conditional reveal */
+  .conditional { display: none; margin-top: 10px; }
+  .conditional.visible { display: block; }
+
+  /* Bloco entrevista */
+  .interview-block {
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .interview-block .section-header { background: #2D6A9F; }
+  .interview-q {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--cinza-2);
+  }
+  .interview-q:last-child { border-bottom: none; }
+  .interview-q .q-text { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--texto); }
+  .interview-q textarea { min-height: 80px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="eyebrow">ProfEPT · IFRJ Campus Mesquita · Mestrado Profissional em EPT</div>
+  <h1>PROSA – <em>Instrumentos de Coleta de Dados</em></h1>
+  <p class="subtitle">Programa de Promoção da Saúde Ativa: desenvolvimento de práticas de promoção da saúde para discentes do ProfEPT/IFRJ</p>
+  <div class="pesquisador">
+    <span class="dot">BC</span>
+    Pesquisador: Bruno Cesar dos Santos
+  </div>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('ipaq',this)">Anexo I · IPAQ</button>
+  <button class="tab-btn" onclick="showTab('anamnese',this)">Anexo II-A · Anamnese</button>
+  <button class="tab-btn tab-restrito" onclick="solicitarSenha('anamnese-b',this)">Anexo II-B · Medições 🔒</button>
+  <button class="tab-btn" onclick="showTab('entrevista',this)">Anexo III · Entrevista</button>
+  <button class="tab-btn tab-restrito" onclick="solicitarSenha('avaliacao',this)">Anexo IV · Avaliação do PE 🔒</button>
+</nav>
+
+<main class="content">
+
+<!-- ══════════════════════════════════════════════
+     ANEXO I – IPAQ
+══════════════════════════════════════════════ -->
+<section id="tab-ipaq" class="form-panel active">
+  <div class="panel-intro">
+    <strong>Questionário Internacional de Atividade Física – IPAQ (Versão Curta)</strong>
+    Considere apenas atividades físicas realizadas por pelo menos 10 minutos contínuos. As perguntas referem-se aos últimos 7 dias.
+  </div>
+
+  <form id="form-ipaq">
+
+    <!-- Identificação -->
+    <div class="form-section">
+      <div class="section-header" style="background:var(--verde);">Identificação do Participante</div>
+      <div class="section-body">
+        <div class="id-banner">
+          <div class="id-item">
+            <span class="id-label">Código do participante</span>
+            <span class="id-value" id="display-codigo">—</span>
+            <input type="hidden" name="codigo" id="campo-codigo">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Data da avaliação</span>
+            <span class="id-value" id="display-data">—</span>
+            <input type="hidden" name="data_avaliacao" id="campo-data">
+          </div>
+        </div>
+        <p class="id-note">Código e data gerados automaticamente pelo sistema · não editáveis</p>
+        <div class="field-grid" style="margin-top:18px">
+          <div class="field-group" style="grid-column: 1 / -1">
+            <label>Nome completo</label>
+            <input type="text" name="nome" placeholder="Nome do participante">
+          </div>
+          <div class="field-group">
+            <label>Data de nascimento</label>
+            <input type="date" name="nascimento">
+          </div>
+          <div class="field-group">
+            <label>Idade (anos)</label>
+            <input type="number" name="idade" min="18" max="80" placeholder="Ex: 35">
+          </div>
+        </div>
+        <div class="question" style="margin-top:16px">
+          <label class="q-label"><span class="q-num">Q10</span>Sexo</label>
+          <div class="options" style="flex-direction:row;flex-wrap:wrap;">
+            <label class="option"><input type="radio" name="sexo" value="M"> Masculino</label>
+            <label class="option"><input type="radio" name="sexo" value="F"> Feminino</label>
+            <label class="option"><input type="radio" name="sexo" value="NB"> Não-binário</label>
+            <label class="option"><input type="radio" name="sexo" value="ND"> Prefiro não declarar</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parte 1 -->
+    <div class="form-section">
+      <div class="section-header">
+        Parte 1 — Atividades Físicas Vigorosas
+        <span class="badge">Corrida · Esportes · Pedalar rápido</span>
+      </div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q1</span>Em quantos dias você realizou atividades vigorosas por pelo menos 10 min contínuos?</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="ipaq_q1" value="0"> Nenhum dia</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="1"> 1 dia</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="2"> 2 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="3"> 3 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="4"> 4 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="5"> 5 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="6"> 6 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q1" value="7"> 7 dias</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q42</span>Quanto tempo em média você gastou por dia nessas atividades?</label>
+          <div class="time-row">
+            <input type="number" name="ipaq_q2_h" min="0" max="23" placeholder="0"> <label>horas</label>
+            <input type="number" name="ipaq_q2_m" min="0" max="59" placeholder="0"> <label>minutos</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parte 2 -->
+    <div class="form-section">
+      <div class="section-header">
+        Parte 2 — Atividades Físicas Moderadas
+        <span class="badge">Caminhada rápida · Pedalar moderado</span>
+      </div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q43</span>Em quantos dias você realizou atividades moderadas por pelo menos 10 min contínuos?</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="ipaq_q3" value="0"> Nenhum dia</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="1"> 1 dia</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="2"> 2 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="3"> 3 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="4"> 4 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="5"> 5 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="6"> 6 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q3" value="7"> 7 dias</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q44</span>Quanto tempo em média você gastou por dia nessas atividades?</label>
+          <div class="time-row">
+            <input type="number" name="ipaq_q4_h" min="0" max="23" placeholder="0"> <label>horas</label>
+            <input type="number" name="ipaq_q4_m" min="0" max="59" placeholder="0"> <label>minutos</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parte 3 -->
+    <div class="form-section">
+      <div class="section-header">Parte 3 — Caminhada</div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q45</span>Em quantos dias você caminhou por pelo menos 10 min contínuos?</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="ipaq_q5" value="0"> Nenhum dia</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="1"> 1 dia</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="2"> 2 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="3"> 3 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="4"> 4 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="5"> 5 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="6"> 6 dias</label>
+            <label class="option"><input type="radio" name="ipaq_q5" value="7"> 7 dias</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q15</span>Quanto tempo em média você caminhou por dia?</label>
+          <div class="time-row">
+            <input type="number" name="ipaq_q6_h" min="0" max="23" placeholder="0"> <label>horas</label>
+            <input type="number" name="ipaq_q6_m" min="0" max="59" placeholder="0"> <label>minutos</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parte 4 -->
+    <div class="form-section">
+      <div class="section-header">Parte 4 — Tempo Sentado</div>
+      <div class="section-body">
+        <div class="hint">Inclua tempo sentado no trabalho, estudando, em casa, assistindo TV ou no computador.</div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q16</span>Durante um dia de semana típico, quanto tempo você permanece sentado?</label>
+          <div class="time-row">
+            <input type="number" name="ipaq_q7_h" min="0" max="24" placeholder="0"> <label>horas</label>
+            <input type="number" name="ipaq_q7_m" min="0" max="59" placeholder="0"> <label>minutos</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q9</span>Durante um dia típico de final de semana, quanto tempo você permanece sentado?</label>
+          <div class="time-row">
+            <input type="number" name="ipaq_q8_h" min="0" max="24" placeholder="0"> <label>horas</label>
+            <input type="number" name="ipaq_q8_m" min="0" max="59" placeholder="0"> <label>minutos</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <span class="form-note">Classificação IPAQ calculada conforme Matsudo et al. (2001)</span>
+      <button type="submit" class="btn-submit">Registrar respostas →</button>
+    </div>
+  </form>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ANEXO II – ANAMNESE
+══════════════════════════════════════════════ -->
+<section id="tab-anamnese" class="form-panel">
+  <div class="panel-intro">
+    <strong>Questionário de Anamnese</strong>
+    Coleta de dados sociodemográficos, ocupacionais e medidas antropométricas e biofisiológicas do participante.
+  </div>
+
+  <form id="form-anamnese">
+
+    <div class="form-section" style="margin-bottom:8px">
+      <div class="section-header" style="background:var(--verde);">Identificação do Participante</div>
+      <div class="section-body">
+        <div class="id-banner">
+          <div class="id-item">
+            <span class="id-label">Código do participante</span>
+            <span class="id-value id-propagated">—</span>
+            <input type="hidden" name="an_codigo">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Nome do participante</span>
+            <span class="id-value id-propagated-nome" style="font-size:15px">—</span>
+            <input type="hidden" name="an_nome">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Data da avaliação</span>
+            <span class="id-value id-propagated-data">—</span>
+            <input type="hidden" name="an_data">
+          </div>
+        </div>
+        <p class="id-note">Código, nome e data propagados do Anexo I · não editáveis</p>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">1. Formação e Atuação Profissional</div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q2</span>Área de formação</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="area" value="educacao"> Educação</label>
+            <label class="option"><input type="radio" name="area" value="eng_tec"> Engenharia / Tecnologia</label>
+            <label class="option"><input type="radio" name="area" value="saude"> Saúde</label>
+            <label class="option"><input type="radio" name="area" value="humanas"> Ciências Humanas</label>
+            <label class="option"><input type="radio" name="area" value="exatas"> Ciências Exatas</label>
+            <label class="option"><input type="radio" name="area" value="outra"> Outra</label>
+          </div>
+          <div class="conditional" id="area-outra">
+            <input type="text" name="area_outra" placeholder="Especifique sua área">
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q3</span>Tempo de atuação profissional</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="tempo_prof" value="lt5"> Menos de 5 anos</label>
+            <label class="option"><input type="radio" name="tempo_prof" value="5_10"> 5 a 10 anos</label>
+            <label class="option"><input type="radio" name="tempo_prof" value="11_20"> 11 a 20 anos</label>
+            <label class="option"><input type="radio" name="tempo_prof" value="gt20"> Mais de 20 anos</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q4</span>Carga horária semanal de trabalho</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="carga_trabalho" value="lt20"> Menos de 20 horas</label>
+            <label class="option"><input type="radio" name="carga_trabalho" value="20_30"> 20 a 30 horas</label>
+            <label class="option"><input type="radio" name="carga_trabalho" value="31_40"> 31 a 40 horas</label>
+            <label class="option"><input type="radio" name="carga_trabalho" value="gt40"> Mais de 40 horas</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q5</span>Meio de transporte mais utilizado no deslocamento diário</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="transporte" value="caminhada"> Caminhada</label>
+            <label class="option"><input type="radio" name="transporte" value="bicicleta"> Bicicleta</label>
+            <label class="option"><input type="radio" name="transporte" value="pub"> Transporte público</label>
+            <label class="option"><input type="radio" name="transporte" value="auto"> Automóvel</label>
+            <label class="option"><input type="radio" name="transporte" value="moto"> Motocicleta</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q6</span>Horas semanais dedicadas às atividades do mestrado</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="h_mestrado" value="lt5"> Até 5 horas</label>
+            <label class="option"><input type="radio" name="h_mestrado" value="6_10"> 6 a 10 horas</label>
+            <label class="option"><input type="radio" name="h_mestrado" value="11_20"> 11 a 20 horas</label>
+            <label class="option"><input type="radio" name="h_mestrado" value="gt20"> Mais de 20 horas</label>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q7</span>Você possui alguma restrição médica para a prática de atividade física?</label>
+          <div class="options" style="flex-direction:row;">
+            <label class="option"><input type="radio" name="restricao" value="sim" onclick="toggleCondicional('restricao-detalhe')"> Sim</label>
+            <label class="option"><input type="radio" name="restricao" value="nao" onclick="hideCondicional('restricao-detalhe')"> Não</label>
+          </div>
+          <div class="conditional" id="restricao-detalhe" style="margin-top:12px">
+            <label style="font-size:13px;color:var(--texto-lt);display:block;margin-bottom:6px;">Se sim, qual?</label>
+            <textarea name="restricao_detalhe" placeholder="Descreva a restrição médica"></textarea>
+          </div>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q8</span>Você já recebeu orientação profissional para prática de atividade física?</label>
+          <div class="options" style="flex-direction:row;">
+            <label class="option"><input type="radio" name="orientacao" value="sim"> Sim</label>
+            <label class="option"><input type="radio" name="orientacao" value="nao"> Não</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <span class="form-note">Dados utilizados exclusivamente para fins científicos (CAAE 94355125.5.0000.5268)</span>
+      <button type="submit" class="btn-submit">Registrar respostas →</button>
+    </div>
+  </form>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ANEXO II-B – MEDIÇÕES
+══════════════════════════════════════════════ -->
+<section id="tab-anamnese-b" class="form-panel">
+  <div class="panel-intro">
+    <strong>Anexo II-B — Avaliação Antropométrica e Medições Biofisiológicas</strong>
+    Registro das medidas de composição corporal (bioimpedância) e aferição da pressão arterial do participante.
+  </div>
+
+  <form id="form-anamnese-b">
+
+    <div class="form-section" style="margin-bottom:8px">
+      <div class="section-header" style="background:var(--verde);">Identificação do Participante</div>
+      <div class="section-body">
+        <div class="id-banner">
+          <div class="id-item">
+            <span class="id-label">Código do participante</span>
+            <span class="id-value id-propagated">—</span>
+            <input type="hidden" name="anb_codigo">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Nome do participante</span>
+            <span class="id-value id-propagated-nome" style="font-size:15px">—</span>
+            <input type="hidden" name="anb_nome">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Data da avaliação</span>
+            <span class="id-value id-propagated-data">—</span>
+            <input type="hidden" name="anb_data">
+          </div>
+        </div>
+        <p class="id-note">Código, nome e data propagados do Anexo I · não editáveis</p>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">1. Avaliação Antropométrica e Composição Corporal (Bioimpedância)</div>
+      <div class="section-body">
+        <div class="field-grid">
+          <div class="field-group"><label>Altura (m)</label><input type="number" name="altura" step="0.01" min="1" max="2.5" placeholder="Ex: 1.75"></div>
+          <div class="field-group"><label>Peso corporal (kg)</label><input type="number" name="peso" step="0.1" placeholder="Ex: 72.5"></div>
+          <div class="field-group"><label>IMC (kg/m²)</label><input type="number" name="imc" step="0.01" placeholder="Calculado: peso/altura²"></div>
+          <div class="field-group"><label>Gordura corporal (%)</label><input type="number" name="gordura_pct" step="0.1" placeholder="Ex: 22.0"></div>
+          <div class="field-group"><label>Peso da gordura (kg)</label><input type="number" name="gordura_kg" step="0.1" placeholder="Ex: 16.0"></div>
+          <div class="field-group"><label>Massa muscular esquelética (%)</label><input type="number" name="mm_pct" step="0.1" placeholder="Ex: 35.0"></div>
+          <div class="field-group"><label>Peso da massa muscular (kg)</label><input type="number" name="mm_kg" step="0.1" placeholder="Ex: 25.2"></div>
+          <div class="field-group"><label>Peso total da massa muscular (kg)</label><input type="number" name="mm_total_kg" step="0.1" placeholder="Ex: 30.0"></div>
+          <div class="field-group"><label>Água corporal (%)</label><input type="number" name="agua_pct" step="0.1" placeholder="Ex: 55.0"></div>
+          <div class="field-group"><label>Peso da água (kg)</label><input type="number" name="agua_kg" step="0.1" placeholder="Ex: 39.7"></div>
+          <div class="field-group"><label>Gordura visceral</label><input type="number" name="g_visceral" placeholder="Ex: 8"></div>
+          <div class="field-group"><label>Massa óssea (kg)</label><input type="number" name="ossea_kg" step="0.1" placeholder="Ex: 2.8"></div>
+          <div class="field-group"><label>Metabolismo basal (kcal)</label><input type="number" name="metabolismo" placeholder="Ex: 1650"></div>
+          <div class="field-group"><label>Índice de obesidade (%)</label><input type="number" name="obesidade_pct" step="0.1" placeholder="Ex: 18.0"></div>
+          <div class="field-group"><label>Idade metabólica (anos)</label><input type="number" name="idade_meta" placeholder="Ex: 32"></div>
+          <div class="field-group"><label>LBM – Massa corporal magra (kg)</label><input type="number" name="lbm" step="0.1" placeholder="Ex: 56.5"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">2. Aferição da Pressão Arterial</div>
+      <div class="section-body">
+        <div class="field-grid">
+          <div class="field-group"><label>Pressão arterial sistólica (mmHg)</label><input type="number" name="pas" placeholder="Ex: 120"></div>
+          <div class="field-group"><label>Pressão arterial diastólica (mmHg)</label><input type="number" name="pad" placeholder="Ex: 80"></div>
+          <div class="field-group"><label>Frequência cardíaca (bpm)</label><input type="number" name="fc" placeholder="Ex: 72"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <span class="form-note">Dados utilizados exclusivamente para fins científicos (CAAE 94355125.5.0000.5268)</span>
+      <button type="submit" class="btn-submit">Registrar medições →</button>
+    </div>
+  </form>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ANEXO III – ENTREVISTA
+══════════════════════════════════════════════ -->
+<section id="tab-entrevista" class="form-panel">
+  <div class="panel-intro">
+    <strong>Roteiro de Entrevista Semiestruturada</strong>
+    Registre as respostas do participante durante a entrevista. As perguntas são abertas e devem ser exploradas livremente. As respostas serão utilizadas exclusivamente para fins científicos.
+  </div>
+
+  <form id="form-entrevista">
+
+    <div class="form-section" style="margin-bottom:8px">
+      <div class="section-header" style="background:var(--verde);">Identificação da Entrevista</div>
+      <div class="section-body">
+        <div class="id-banner">
+          <div class="id-item">
+            <span class="id-label">Código do participante</span>
+            <span class="id-value id-propagated">—</span>
+            <input type="hidden" name="e_codigo">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Nome do participante</span>
+            <span class="id-value id-propagated-nome" style="font-size:15px">—</span>
+            <input type="hidden" name="e_nome">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Data da entrevista</span>
+            <span class="id-value id-propagated-data">—</span>
+            <input type="hidden" name="e_data">
+          </div>
+        </div>
+        <p class="id-note">Código, nome e data propagados do Anexo I · não editáveis</p>
+      </div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 1 — Rotina Acadêmica e Profissional</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q17</span> Como você descreveria sua rotina semanal entre trabalho, estudo e outras atividades?</div><textarea name="e_q1" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q18</span> De que forma a rotina acadêmica do mestrado influencia sua organização do tempo no dia a dia?</div><textarea name="e_q2" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q19</span> Você considera que sua rotina atual favorece ou dificulta a prática de atividades físicas? Por quê?</div><textarea name="e_q3" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 2 — Percepção sobre Atividade Física</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q20</span> Qual é a importância que você atribui à prática de atividade física no cotidiano?</div><textarea name="e_q4" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q21</span> Na sua percepção, quais são as principais dificuldades para manter uma prática regular de atividade física?</div><textarea name="e_q5" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q22</span> Existem estratégias que você utiliza para tentar manter-se fisicamente ativo no dia a dia?</div><textarea name="e_q6" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 3 — Sedentarismo e Rotina Acadêmica</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q23</span> Você acredita que a rotina de trabalho e estudo contribui para que você permaneça muito tempo sentado? Como isso acontece na sua rotina?</div><textarea name="e_q7" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q24</span> Em sua opinião, quais mudanças poderiam facilitar a inclusão de atividades físicas no cotidiano de estudantes de pós-graduação?</div><textarea name="e_q8" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 4 — Percepção sobre Pausas Ativas</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q25</span> Você já teve contato com a ideia de pausas ativas ou pequenas interrupções para realizar movimentos durante o trabalho ou estudo?</div><textarea name="e_q9" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q26</span> Na sua opinião, pequenas atividades físicas realizadas durante o dia poderiam contribuir para reduzir o tempo sedentário? De que maneira?</div><textarea name="e_q10" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 5 — Percepção sobre as "Pílulas de Movimento"</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q27</span> Após conhecer a proposta das "Pílulas de Movimento", qual é sua opinião sobre esse tipo de estratégia?</div><textarea name="e_q11" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q28</span> Você acredita que exercícios curtos, como os apresentados nos cards, poderiam ser incorporados em sua rotina diária? Por quê?</div><textarea name="e_q12" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q29</span> Quais tipos de atividades físicas simples você considera mais viáveis durante pausas de estudo ou trabalho?</div><textarea name="e_q13" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="interview-block">
+      <div class="section-header">Bloco 6 — Considerações Finais</div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q30</span> Na sua opinião, o que poderia ajudar estudantes de pós-graduação a reduzir o comportamento sedentário?</div><textarea name="e_q14" placeholder="Resposta do participante..."></textarea></div>
+      <div class="interview-q"><div class="q-text"><span class="q-num" style="color:#2D6A9F">Q31</span> Gostaria de acrescentar alguma sugestão ou comentário sobre a prática de atividade física no contexto da pós-graduação?</div><textarea name="e_q15" placeholder="Resposta do participante..."></textarea></div>
+    </div>
+
+    <div class="form-footer">
+      <span class="form-note">Entrevistas individuais · Sigilo garantido</span>
+      <button type="submit" class="btn-submit">Salvar entrevista →</button>
+    </div>
+  </form>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ANEXO IV – AVALIAÇÃO DO PE
+══════════════════════════════════════════════ -->
+<section id="tab-avaliacao" class="form-panel">
+  <div class="panel-intro">
+    <strong>Instrumento de Avaliação do Produto Educacional – "Pílulas de Movimento"</strong>
+    Não existem respostas certas ou erradas. Sua opinião é fundamental para o aprimoramento do material.
+  </div>
+
+  <form id="form-avaliacao">
+
+    <div class="form-section" style="margin-bottom:8px">
+      <div class="section-header" style="background:var(--verde)">Identificação</div>
+      <div class="section-body">
+        <div class="id-banner">
+          <div class="id-item">
+            <span class="id-label">Código do participante</span>
+            <span class="id-value id-propagated">—</span>
+            <input type="hidden" name="av_codigo">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Nome do participante</span>
+            <span class="id-value id-propagated-nome" style="font-size:15px">—</span>
+            <input type="hidden" name="av_nome">
+          </div>
+          <div class="id-item">
+            <span class="id-label">Data</span>
+            <span class="id-value id-propagated-data">—</span>
+            <input type="hidden" name="av_data">
+          </div>
+        </div>
+        <p class="id-note">Código, nome e data propagados do Anexo I · não editáveis</p>
+      </div>
+    </div>
+
+    <!-- Likert -->
+    <div class="form-section">
+      <div class="section-header">Parte 1 — Avaliação do Conteúdo (Escala Likert 1–5)</div>
+      <div class="section-body">
+        <p class="hint" style="margin-bottom:16px">1 = Discordo totalmente · 2 = Discordo parcialmente · 3 = Nem concordo nem discordo · 4 = Concordo parcialmente · 5 = Concordo totalmente</p>
+
+        <table class="likert-table">
+          <thead>
+            <tr>
+              <th>Afirmação</th>
+              <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Q32</strong> As informações nos cards são claras e fáceis de compreender.</td>
+              <td><input type="radio" name="av_q1" value="1"></td>
+              <td><input type="radio" name="av_q1" value="2"></td>
+              <td><input type="radio" name="av_q1" value="3"></td>
+              <td><input type="radio" name="av_q1" value="4"></td>
+              <td><input type="radio" name="av_q1" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q33</strong> As orientações sobre os exercícios são simples de seguir.</td>
+              <td><input type="radio" name="av_q2" value="1"></td>
+              <td><input type="radio" name="av_q2" value="2"></td>
+              <td><input type="radio" name="av_q2" value="3"></td>
+              <td><input type="radio" name="av_q2" value="4"></td>
+              <td><input type="radio" name="av_q2" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q34</strong> A linguagem é adequada para o público da pós-graduação.</td>
+              <td><input type="radio" name="av_q3" value="1"></td>
+              <td><input type="radio" name="av_q3" value="2"></td>
+              <td><input type="radio" name="av_q3" value="3"></td>
+              <td><input type="radio" name="av_q3" value="4"></td>
+              <td><input type="radio" name="av_q3" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q35</strong> A organização das informações nos cards facilita a compreensão.</td>
+              <td><input type="radio" name="av_q4" value="1"></td>
+              <td><input type="radio" name="av_q4" value="2"></td>
+              <td><input type="radio" name="av_q4" value="3"></td>
+              <td><input type="radio" name="av_q4" value="4"></td>
+              <td><input type="radio" name="av_q4" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q36</strong> O formato visual dos cards torna o material atrativo.</td>
+              <td><input type="radio" name="av_q5" value="1"></td>
+              <td><input type="radio" name="av_q5" value="2"></td>
+              <td><input type="radio" name="av_q5" value="3"></td>
+              <td><input type="radio" name="av_q5" value="4"></td>
+              <td><input type="radio" name="av_q5" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q37</strong> As atividades podem ser realizadas facilmente no cotidiano acadêmico ou profissional.</td>
+              <td><input type="radio" name="av_q6" value="1"></td>
+              <td><input type="radio" name="av_q6" value="2"></td>
+              <td><input type="radio" name="av_q6" value="3"></td>
+              <td><input type="radio" name="av_q6" value="4"></td>
+              <td><input type="radio" name="av_q6" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q38</strong> As "Pílulas de Movimento" são adequadas para pessoas com rotina intensa de estudo e trabalho.</td>
+              <td><input type="radio" name="av_q7" value="1"></td>
+              <td><input type="radio" name="av_q7" value="2"></td>
+              <td><input type="radio" name="av_q7" value="3"></td>
+              <td><input type="radio" name="av_q7" value="4"></td>
+              <td><input type="radio" name="av_q7" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q39</strong> As atividades podem contribuir para reduzir períodos prolongados de sedentarismo.</td>
+              <td><input type="radio" name="av_q8" value="1"></td>
+              <td><input type="radio" name="av_q8" value="2"></td>
+              <td><input type="radio" name="av_q8" value="3"></td>
+              <td><input type="radio" name="av_q8" value="4"></td>
+              <td><input type="radio" name="av_q8" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q40</strong> O material pode incentivar a prática de atividade física no cotidiano.</td>
+              <td><input type="radio" name="av_q9" value="1"></td>
+              <td><input type="radio" name="av_q9" value="2"></td>
+              <td><input type="radio" name="av_q9" value="3"></td>
+              <td><input type="radio" name="av_q9" value="4"></td>
+              <td><input type="radio" name="av_q9" value="5"></td>
+            </tr>
+            <tr>
+              <td><strong>Q41</strong> O material é relevante para discentes de programas de pós-graduação.</td>
+              <td><input type="radio" name="av_q10" value="1"></td>
+              <td><input type="radio" name="av_q10" value="2"></td>
+              <td><input type="radio" name="av_q10" value="3"></td>
+              <td><input type="radio" name="av_q10" value="4"></td>
+              <td><input type="radio" name="av_q10" value="5"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">Parte 2 — Avaliação Geral</div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q11</span>De modo geral, como você avalia os cards "Pílulas de Movimento"?</label>
+          <div class="options" style="flex-direction:row;flex-wrap:wrap;">
+            <label class="option"><input type="radio" name="av_geral" value="1"> Muito ruim</label>
+            <label class="option"><input type="radio" name="av_geral" value="2"> Ruim</label>
+            <label class="option"><input type="radio" name="av_geral" value="3"> Regular</label>
+            <label class="option"><input type="radio" name="av_geral" value="4"> Bom</label>
+            <label class="option"><input type="radio" name="av_geral" value="5"> Muito bom</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">Parte 3 — Perguntas Abertas</div>
+      <div class="section-body">
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q12</span>Quais aspectos do material você considera mais positivos?</label>
+          <textarea name="av_q12" placeholder="Descreva os pontos positivos do material..."></textarea>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q13</span>Há alguma sugestão de melhoria para os cards "Pílulas de Movimento"?</label>
+          <textarea name="av_q13" placeholder="Descreva suas sugestões..."></textarea>
+        </div>
+        <div class="question">
+          <label class="q-label"><span class="q-num">Q14</span>Você acredita que utilizaria alguma das "Pílulas de Movimento" em sua rotina diária?</label>
+          <div class="options" style="flex-direction:row;flex-wrap:wrap;">
+            <label class="option"><input type="radio" name="av_usaria" value="sim"> Sim</label>
+            <label class="option"><input type="radio" name="av_usaria" value="nao"> Não</label>
+            <label class="option"><input type="radio" name="av_usaria" value="talvez"> Talvez</label>
+          </div>
+          <div class="conditional visible" id="av-usaria-detalhe" style="margin-top:10px">
+            <textarea name="av_usaria_detalhe" placeholder="Se desejar, explique sua resposta..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <span class="form-note">Avaliação do PE conforme tipologia Rizzatti et al. (2020)</span>
+      <button type="submit" class="btn-submit">Enviar avaliação →</button>
+    </div>
+  </form>
+</section>
+
+</main>
+
+<!-- Tela de login do participante -->
+<div class="modal-overlay open" id="login-overlay">
+  <div class="modal-box" style="max-width:420px">
+    <div class="modal-icon">🌿</div>
+    <h3>Bem-vindo ao PROSA</h3>
+    <p>Antes de começar, informe seus dados de identificação.<br>Eles serão vinculados às suas respostas.</p>
+    <div style="text-align:left;margin-bottom:10px">
+      <label style="font-size:12px;font-weight:600;color:var(--texto-lt);display:block;margin-bottom:5px">Nome completo</label>
+      <input type="text" id="login-nome" placeholder="Seu nome completo"
+             style="width:100%;padding:11px 14px;border:1.5px solid var(--cinza-2);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:12px">
+      <label style="font-size:12px;font-weight:600;color:var(--texto-lt);display:block;margin-bottom:5px">E-mail</label>
+      <input type="email" id="login-email" placeholder="seu@email.com"
+             style="width:100%;padding:11px 14px;border:1.5px solid var(--cinza-2);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;"
+             onkeydown="if(event.key==='Enter') document.getElementById('login-btn').click()">
+    </div>
+    <div class="modal-erro" id="login-erro"></div>
+    <button class="btn-modal-confirmar" id="login-btn" style="width:100%;margin-top:6px;padding:13px">
+      Acessar os formulários →
+    </button>
+    <p style="font-size:11px;color:var(--cinza-3);margin-top:14px;margin-bottom:0">
+      Seus dados são utilizados exclusivamente para fins científicos.<br>
+      CAAE 94355125.5.0000.5268
+    </p>
+  </div>
+</div>
+
+<!-- Modal de senha -->
+<div class="modal-overlay" id="modal-senha">
+  <div class="modal-box">
+    <div class="modal-icon">🔒</div>
+    <h3>Acesso restrito</h3>
+    <p>Esta seção é de uso exclusivo do pesquisador.<br>Insira a senha para continuar.</p>
+    <input type="password" id="input-senha" placeholder="••••••" maxlength="20"
+           onkeydown="if(event.key==='Enter') confirmarSenha()">
+    <div class="modal-erro" id="modal-erro"></div>
+    <div class="modal-actions">
+      <button class="btn-modal-cancelar" onclick="fecharModal()">Cancelar</button>
+      <button class="btn-modal-confirmar" onclick="confirmarSenha()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Respostas registradas com sucesso</div>
+
+<script>
+  // ── Geração automática de código e data ──────────────────
+  function gerarCodigo() {
+    const hoje = new Date();
+    const yyyymmdd = hoje.toISOString().slice(0,10).replace(/-/g,'');
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    return `PROSA-${yyyymmdd}-${rand}`;
+  }
+
+  function dataFormatada(d) {
+    return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+  }
+
+  function dataISO(d) {
+    return d.toISOString().slice(0,10);
+  }
+
+  const CODIGO = gerarCodigo();
+  const HOJE   = new Date();
+
+  // Preencher Anexo I
+  document.getElementById('display-codigo').textContent = CODIGO;
+  document.getElementById('campo-codigo').value         = CODIGO;
+  document.getElementById('display-data').textContent   = dataFormatada(HOJE);
+  document.getElementById('campo-data').value           = dataISO(HOJE);
+
+  // Propagar para Entrevista e Avaliação
+  function propagarId() {
+    document.querySelectorAll('.id-propagated').forEach(el => {
+      el.textContent = CODIGO;
+      const hidden = el.nextElementSibling;
+      if (hidden) hidden.value = CODIGO;
+    });
+    document.querySelectorAll('.id-propagated-data').forEach(el => {
+      el.textContent = dataFormatada(HOJE);
+      const hidden = el.nextElementSibling;
+      if (hidden) hidden.value = dataISO(HOJE);
+    });
+    // Propagar nome atual
+    const nomeAtual = document.querySelector('input[name="nome"]').value.trim();
+    document.querySelectorAll('.id-propagated-nome').forEach(el => {
+      el.textContent = nomeAtual || '—';
+      const hidden = el.nextElementSibling;
+      if (hidden) hidden.value = nomeAtual;
+    });
+  }
+  propagarId();
+
+  // Atualizar nome em tempo real conforme digitação
+  document.querySelector('input[name="nome"]').addEventListener('input', propagarId);
+  // ─────────────────────────────────────────────────────────
+
+  // ── Controle de acesso restrito ──────────────────────────
+  // Senha do pesquisador — altere aqui conforme necessário
+  const SENHA_PESQUISADOR = '38872095';
+
+  let _tabPendente  = null; // aba aguardando autenticação
+  let _btnPendente  = null; // botão aguardando autenticação
+
+  function solicitarSenha(tabName, btn) {
+    _tabPendente = tabName;
+    _btnPendente = btn;
+    document.getElementById('input-senha').value = '';
+    document.getElementById('modal-erro').textContent = '';
+    document.getElementById('modal-senha').classList.add('open');
+    setTimeout(() => document.getElementById('input-senha').focus(), 80);
+  }
+
+  function fecharModal() {
+    document.getElementById('modal-senha').classList.remove('open');
+    _tabPendente = null;
+    _btnPendente = null;
+  }
+
+  function confirmarSenha() {
+    const digitada = document.getElementById('input-senha').value;
+    if (digitada === SENHA_PESQUISADOR) {
+      fecharModal();
+      showTab(_tabPendente, _btnPendente);
+    } else {
+      document.getElementById('modal-erro').textContent = 'Senha incorreta. Tente novamente.';
+      document.getElementById('input-senha').value = '';
+      document.getElementById('input-senha').focus();
+    }
+  }
+
+  // Fechar modal clicando fora
+  document.getElementById('modal-senha').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+  // ─────────────────────────────────────────────────────────
+
+  // Abas
+  function showTab(name, btn) {
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Condicional genérico
+  function toggleCondicional(id) {
+    document.getElementById(id).classList.toggle('visible');
+  }
+  function hideCondicional(id) {
+    document.getElementById(id).classList.remove('visible');
+  }
+
+  // Área "outra" condicional
+  document.querySelectorAll('input[name="area"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const el = document.getElementById('area-outra');
+      el.classList.toggle('visible', r.value === 'outra' && r.checked);
+    });
+  });
+
+  // ── CONFIGURAÇÃO GOOGLE SHEETS ───────────────────────────
+  // Cole aqui a URL do seu Google Apps Script após seguir o guia
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxc6-TvgyreT3ef2kC7pvsCTOK-OCuvF-YBn7dEDGGOoKOKsM1s0t_0xl-jFL1Iak5C/exec';
+  // ─────────────────────────────────────────────────────────
+
+  // ── LOGIN DO PARTICIPANTE ────────────────────────────────
+  let EMAIL_PARTICIPANTE = '';
+
+  function iniciarLogin() {
+    const overlay = document.getElementById('login-overlay');
+    const nomeInput = document.getElementById('login-nome');
+    const emailInput = document.getElementById('login-email');
+    const erro = document.getElementById('login-erro');
+    const btn = document.getElementById('login-btn');
+
+    btn.addEventListener('click', () => {
+      const nome  = nomeInput.value.trim();
+      const email = emailInput.value.trim();
+      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!nome)        { erro.textContent = 'Por favor, informe seu nome.'; return; }
+      if (!emailValido) { erro.textContent = 'Informe um e-mail válido.'; return; }
+
+      EMAIL_PARTICIPANTE = email;
+
+      // Preencher campo nome no Anexo I e disparar propagação
+      const campoNome = document.querySelector('input[name="nome"]');
+      campoNome.value = nome;
+      propagarId();
+
+      overlay.classList.remove('open');
+    });
+
+    overlay.classList.add('open');
+    nomeInput.focus();
+  }
+
+  // ── COLETA DE DADOS DO FORMULÁRIO ───────────────────────
+  function coletarDados(form) {
+    const dados = { email: EMAIL_PARTICIPANTE, formulario: form.id, timestamp: new Date().toISOString() };
+    new FormData(form).forEach((v, k) => { dados[k] = v; });
+    // Coletar radios não capturados pelo FormData quando nenhum marcado
+    form.querySelectorAll('input[type="radio"]:checked').forEach(r => { dados[r.name] = r.value; });
+    return dados;
+  }
+
+  // ── ENVIO PARA GOOGLE SHEETS ─────────────────────────────
+  async function enviarParaSheets(dados, btn) {
+    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
+      // Modo demonstração — sem URL configurada
+      showToast('✓ Respostas registradas (modo local)');
+      return;
+    }
+    const textoOriginal = btn.textContent;
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      });
+      showToast('✓ Respostas salvas na planilha com sucesso');
+    } catch (err) {
+      showToast('⚠ Erro ao enviar. Tente novamente.');
+    } finally {
+      btn.textContent = textoOriginal;
+      btn.disabled = false;
+    }
+  }
+
+  // ── SUBMIT DE TODOS OS FORMULÁRIOS ───────────────────────
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('.btn-submit');
+      const dados = coletarDados(form);
+      await enviarParaSheets(dados, btn);
+    });
+  });
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg || '✓ Respostas registradas com sucesso';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // Iniciar login ao carregar a página
+  iniciarLogin();
+</script>
+</body>
+</html>
