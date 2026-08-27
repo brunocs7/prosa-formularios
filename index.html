@@ -2157,11 +2157,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var textoOriginal = btn ? btn.textContent : '';
     try {
       if (btn) { btn.textContent = 'Enviando…'; btn.disabled = true; }
+
+      // Converter dados para URLSearchParams — único método confiável com no-cors
+      var params = new URLSearchParams();
+      params.append('dados', JSON.stringify(dados));
+
       await fetch(SHEET_URL, {
         method: 'POST',
         mode:   'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(dados)
+        body:    params
       });
       showToast('✓ Respostas salvas com sucesso');
     } catch (err) {
