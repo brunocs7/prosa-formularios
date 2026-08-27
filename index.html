@@ -812,11 +812,13 @@
           </div>
           <div class="field-group">
             <label>Data de nascimento</label>
-            <input type="date" name="nascimento">
+            <input type="date" name="nascimento" id="campo-nascimento" onchange="calcularIdade()">
           </div>
           <div class="field-group">
-            <label>Idade (anos)</label>
-            <input type="number" name="idade" min="18" max="80" placeholder="Ex: 35">
+            <label>Idade (anos) <span style="font-size:10px;color:var(--verde-md);font-style:italic">— preenchida automaticamente</span></label>
+            <input type="number" name="idade" id="campo-idade" min="18" max="80"
+                   placeholder="Calculada ao preencher a data"
+                   readonly style="background:var(--verde-lt);border-color:var(--verde-bd);color:var(--verde);font-weight:600;cursor:default">
           </div>
         </div>
         <div class="question" style="margin-top:16px">
@@ -1666,6 +1668,20 @@
   document.querySelector('input[name="nome"]').addEventListener('input', propagarId);
   // ─────────────────────────────────────────────────────────
 
+  // ── CÁLCULO AUTOMÁTICO DE IDADE ──────────────────────────
+  function calcularIdade() {
+    var nascimento = document.getElementById('campo-nascimento').value;
+    var campoIdade = document.getElementById('campo-idade');
+    if (!nascimento) { campoIdade.value = ''; return; }
+    var hoje = new Date();
+    var nasc  = new Date(nascimento);
+    var idade = hoje.getFullYear() - nasc.getFullYear();
+    var mes   = hoje.getMonth() - nasc.getMonth();
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
+    campoIdade.value = idade > 0 ? idade : '';
+  }
+  // ─────────────────────────────────────────────────────────
+
   // ── TCLE — liberar aceite após leitura completa ──────────
   (function() {
     var corpo = document.querySelector('.tcle-corpo');
@@ -1960,10 +1976,32 @@
 
   // ── COLETA DE DADOS DO FORMULÁRIO ───────────────────────
   function coletarDados(form) {
-    const dados = { email: EMAIL_PARTICIPANTE, formulario: form.id, timestamp: new Date().toISOString() };
-    new FormData(form).forEach((v, k) => { dados[k] = v; });
-    // Coletar radios não capturados pelo FormData quando nenhum marcado
-    form.querySelectorAll('input[type="radio"]:checked').forEach(r => { dados[r.name] = r.value; });
+    var dados = {
+      email:      EMAIL_PARTICIPANTE,
+      formulario: form.id,
+      timestamp:  new Date().toISOString()
+    };
+
+    // 1. Campos de texto, número, date, hidden
+    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="hidden"], textarea').forEach(function(el) {
+      if (el.name && el.value !== '') dados[el.name] = el.value;
+    });
+
+    // 2. Radio buttons — pega o marcado de cada grupo
+    var radioGroups = {};
+    form.querySelectorAll('input[type="radio"]').forEach(function(el) {
+      if (!radioGroups[el.name]) radioGroups[el.name] = null;
+      if (el.checked) radioGroups[el.name] = el.value;
+    });
+    Object.keys(radioGroups).forEach(function(k) {
+      dados[k] = radioGroups[k] !== null ? radioGroups[k] : '';
+    });
+
+    // 3. Checkboxes
+    form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+      if (el.name) dados[el.name] = el.checked ? 'sim' : 'nao';
+    });
+
     return dados;
   }
 
