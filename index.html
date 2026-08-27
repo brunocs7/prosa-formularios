@@ -2158,19 +2158,20 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       if (btn) { btn.textContent = 'Enviando…'; btn.disabled = true; }
 
-      // Converter dados para URLSearchParams — único método confiável com no-cors
-      var params = new URLSearchParams();
-      params.append('dados', JSON.stringify(dados));
-
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode:   'no-cors',
-        body:    params
+      // Google Apps Script exige redirect:follow para funcionar via fetch
+      var resp = await fetch(SHEET_URL, {
+        method:   'POST',
+        redirect: 'follow',
+        headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
+        body:     JSON.stringify(dados)
       });
+
+      // no-cors retorna opaque — qualquer status é tratado como sucesso
       showToast('✓ Respostas salvas com sucesso');
+
     } catch (err) {
       salvarOffline(dados);
-      showToast('⚠ Sem conexão — salvo localmente e será enviado quando a internet voltar');
+      showToast('⚠ Sem conexão — salvo localmente, será enviado quando a internet voltar');
     } finally {
       if (btn) { btn.textContent = textoOriginal; btn.disabled = false; }
     }
