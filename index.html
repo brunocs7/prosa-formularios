@@ -2153,22 +2153,57 @@ document.addEventListener('DOMContentLoaded', function() {
   // ════════════════════════════════════════════════════════
   // 13. ENVIO PARA GOOGLE SHEETS
   // ════════════════════════════════════════════════════════
+  // ── ENVIO VIA FORM OCULTO (contorna CORS do Google Apps Script) ──
+  function enviarViaFormOculto(dados) {
+    return new Promise(function(resolve) {
+      // Criar iframe oculto como destino
+      var iframeName = 'prosa_iframe_' + Date.now();
+      var iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      // Criar form oculto apontando para o Apps Script
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = SHEET_URL;
+      form.target = iframeName;
+      form.style.display = 'none';
+
+      // Adicionar dados como campo único JSON
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'dados';
+      input.value = JSON.stringify(dados);
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+
+      // Resolver após envio (iframe load)
+      iframe.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.removeChild(form);
+          document.body.removeChild(iframe);
+          resolve({ ok: true });
+        }, 500);
+      });
+
+      // Timeout de segurança (8 segundos)
+      setTimeout(function() {
+        try { document.body.removeChild(form); document.body.removeChild(iframe); } catch(e) {}
+        resolve({ ok: true });
+      }, 8000);
+
+      form.submit();
+    });
+  }
+
   async function enviarParaSheets(dados, btn) {
     var textoOriginal = btn ? btn.textContent : '';
     try {
       if (btn) { btn.textContent = 'Enviando…'; btn.disabled = true; }
-
-      // Google Apps Script exige redirect:follow para funcionar via fetch
-      var resp = await fetch(SHEET_URL, {
-        method:   'POST',
-        redirect: 'follow',
-        headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
-        body:     JSON.stringify(dados)
-      });
-
-      // no-cors retorna opaque — qualquer status é tratado como sucesso
+      await enviarViaFormOculto(dados);
       showToast('✓ Respostas salvas com sucesso');
-
     } catch (err) {
       salvarOffline(dados);
       showToast('⚠ Sem conexão — salvo localmente, será enviado quando a internet voltar');
