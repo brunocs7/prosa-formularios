@@ -29,8 +29,9 @@
     font-family: 'Inter', sans-serif;
     background: var(--cinza-1);
     color: var(--texto);
-    line-height: 1.6;
+    line-height: 1.75;
     min-height: 100vh;
+    font-size: 17px;
   }
 
   /* ── HEADER ── */
@@ -124,12 +125,12 @@
     background: var(--verde-lt);
     border-left: 4px solid var(--verde-md);
     border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 16px 20px;
+    padding: 20px 24px;
     margin-bottom: 28px;
-    font-size: 13.5px;
+    font-size: 16px;
     color: var(--verde);
   }
-  .panel-intro strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .panel-intro strong { display: block; font-size: 18px; margin-bottom: 6px; }
 
   /* ── SECTION ── */
   .form-section {
@@ -142,8 +143,8 @@
   .section-header {
     background: var(--verde-md);
     color: #fff;
-    padding: 12px 20px;
-    font-size: 13px;
+    padding: 14px 22px;
+    font-size: 15px;
     font-weight: 600;
     letter-spacing: .04em;
     display: flex;
@@ -166,18 +167,18 @@
   .question label.q-label {
     display: block;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--texto);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .question label.q-label .q-num {
     color: var(--verde-md);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     margin-right: 6px;
   }
   .hint {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--cinza-3);
     margin-top: -6px;
     margin-bottom: 10px;
@@ -189,36 +190,36 @@
   .option {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 9px 14px;
+    gap: 12px;
+    padding: 12px 18px;
     border: 1.5px solid var(--cinza-2);
     border-radius: 7px;
     cursor: pointer;
     transition: border-color .15s, background .15s;
-    font-size: 14px;
+    font-size: 16px;
   }
   .option:hover { border-color: var(--verde-md); background: var(--verde-lt); }
   .option input[type="radio"],
-  .option input[type="checkbox"] { accent-color: var(--verde-md); width: 16px; height: 16px; cursor: pointer; }
+  .option input[type="checkbox"] { accent-color: var(--verde-md); width: 20px; height: 20px; cursor: pointer; }
 
   /* Likert row */
   .likert-table { width: 100%; border-collapse: collapse; }
   .likert-table th {
-    font-size: 11.5px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--texto-lt);
     text-align: center;
-    padding: 6px 4px 10px;
+    padding: 8px 6px 12px;
     border-bottom: 2px solid var(--cinza-2);
   }
   .likert-table th:first-child { text-align: left; }
   .likert-table td {
-    padding: 10px 4px;
+    padding: 13px 6px;
     text-align: center;
     border-bottom: 1px solid var(--cinza-2);
-    font-size: 13.5px;
+    font-size: 15px;
   }
-  .likert-table td:first-child { text-align: left; font-size: 13.5px; padding-left: 0; }
+  .likert-table td:first-child { text-align: left; font-size: 15px; padding-left: 0; }
   .likert-table tr:last-child td { border-bottom: none; }
   .likert-table input[type="radio"] { accent-color: var(--verde-md); width: 17px; height: 17px; cursor: pointer; }
 
@@ -229,13 +230,13 @@
     gap: 10px;
     flex-wrap: wrap;
   }
-  .time-row label { font-size: 13px; color: var(--texto-lt); }
+  .time-row label { font-size: 15px; color: var(--texto-lt); }
   .time-row input[type="number"] {
-    width: 72px;
-    padding: 8px 10px;
+    width: 80px;
+    padding: 10px 12px;
     border: 1.5px solid var(--cinza-2);
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Inter', sans-serif;
     color: var(--texto);
     transition: border-color .15s;
@@ -246,10 +247,10 @@
   input[type="text"], input[type="date"], input[type="number"]:not(.time-row input),
   textarea {
     width: 100%;
-    padding: 10px 14px;
+    padding: 12px 16px;
     border: 1.5px solid var(--cinza-2);
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Inter', sans-serif;
     color: var(--texto);
     background: var(--branco);
@@ -268,7 +269,7 @@
   @media (max-width: 560px) { .field-grid { grid-template-columns: 1fr; } }
 
   .field-group { display: flex; flex-direction: column; gap: 6px; }
-  .field-group label { font-size: 13px; font-weight: 500; color: var(--texto-lt); }
+  .field-group label { font-size: 15px; font-weight: 500; color: var(--texto-lt); }
 
   /* open text */
   textarea { min-height: 90px; }
@@ -287,8 +288,8 @@
     color: #fff;
     border: none;
     border-radius: var(--radius);
-    padding: 13px 32px;
-    font-size: 15px;
+    padding: 16px 36px;
+    font-size: 17px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
     cursor: pointer;
@@ -297,7 +298,7 @@
   }
   .btn-submit:hover { background: var(--verde-md); transform: translateY(-1px); }
   .btn-submit:active { transform: translateY(0); }
-  .form-note { font-size: 12px; color: var(--cinza-3); }
+  .form-note { font-size: 14px; color: var(--cinza-3); }
 
   /* toast */
   .toast {
@@ -588,7 +589,7 @@
     border-radius: var(--radius);
     padding: 12px 16px;
     margin-bottom: 16px;
-    font-size: 13.5px;
+    font-size: 15px;
     color: #c0392b;
     font-weight: 500;
   }
@@ -728,8 +729,148 @@
     border-bottom: 1px solid var(--cinza-2);
   }
   .interview-q:last-child { border-bottom: none; }
-  .interview-q .q-text { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--texto); }
-  .interview-q textarea { min-height: 80px; }
+  .interview-q .q-text { font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--texto); }
+  .interview-q textarea { min-height: 100px; font-size: 15px; }
+
+  /* ── PRÓXIMAS ETAPAS (rodapé) ── */
+  .proximas-etapas {
+    background: var(--verde);
+    color: #fff;
+    padding: 36px 32px;
+    margin-top: 0;
+    border-top: 4px solid var(--laranja);
+  }
+  .proximas-etapas h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    opacity: .95;
+  }
+  .proximas-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .proximas-lista li {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255,255,255,.12);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .proximas-lista li .etapa-num {
+    background: var(--laranja);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .proximas-rodape {
+    max-width: 860px;
+    margin: 20px auto 0;
+    font-size: 13px;
+    opacity: .7;
+    text-align: center;
+  }
+
+  /* ── TELA DE AGRADECIMENTO ── */
+  .agradecimento-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+  .agradecimento-overlay.open { display: flex; }
+  .agradecimento-box {
+    background: var(--branco);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 520px;
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow: 0 12px 60px rgba(0,0,0,.28);
+    animation: slideUp .4s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .agr-icone { font-size: 56px; margin-bottom: 16px; }
+  .agradecimento-box h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--verde);
+    margin-bottom: 12px;
+  }
+  .agradecimento-box p {
+    font-size: 16px;
+    color: var(--texto-lt);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .agr-codigo {
+    background: var(--verde-lt);
+    border: 1.5px solid var(--verde-bd);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--verde);
+    font-weight: 600;
+    margin: 16px 0;
+    font-family: monospace;
+    letter-spacing: .05em;
+  }
+  .agr-caae {
+    font-size: 12px;
+    color: var(--cinza-3);
+    margin-top: 14px;
+  }
+  .btn-fechar-agr {
+    margin-top: 20px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--verde);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .btn-fechar-agr:hover { background: var(--verde-md); }
+
+  /* ── INDICADOR DE NAVEGAÇÃO INTUITIVA ── */
+  .nav-dica {
+    background: var(--verde-lt);
+    border: 1.5px solid var(--verde-bd);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: var(--verde);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-dica strong { font-weight: 700; }
+
 </style>
 </head>
 <body>
@@ -786,6 +927,9 @@
   </div>
 
   <form id="form-ipaq">
+    <div class="nav-dica">
+      📋 <span><strong>Como funciona:</strong> Responda as perguntas de cada etapa e clique em "Registrar respostas" para avançar automaticamente. Você passará por 3 etapas no total.</span>
+    </div>
     <div class="msg-validacao" id="val-ipaq">⚠ Por favor, responda todas as perguntas obrigatórias antes de continuar: Q1 (Sexo), Q2 (dias de atividade vigorosa), Q3 (dias de atividade moderada), Q5 (dias de caminhada), Q8 e Q9 (tempo sentado).</div>
 
     <!-- Identificação -->
@@ -1487,6 +1631,33 @@
 
 </main>
 
+<!-- Próximas Etapas -->
+<footer class="proximas-etapas">
+  <h3 style="text-align:center;margin-bottom:24px">O que acontece após a sua participação?</h3>
+  <ul class="proximas-lista">
+    <li>
+      <span class="etapa-num">1</span>
+      <span><strong>Análise dos dados</strong><br>Suas respostas serão analisadas pelo pesquisador de forma sigilosa e anônima.</span>
+    </li>
+    <li>
+      <span class="etapa-num">2</span>
+      <span><strong>Desenvolvimento das Pílulas de Movimento</strong><br>Com base nos dados coletados, será criado o produto educacional com exercícios adaptados ao seu perfil.</span>
+    </li>
+    <li>
+      <span class="etapa-num">3</span>
+      <span><strong>Encontros presenciais</strong><br>Serão realizados encontros de 40 a 60 minutos com práticas de promoção da saúde no IFRJ.</span>
+    </li>
+    <li>
+      <span class="etapa-num">4</span>
+      <span><strong>Avaliação final</strong><br>Ao final, você será convidado a avaliar o material desenvolvido e compartilhar sua percepção sobre o programa.</span>
+    </li>
+  </ul>
+  <p class="proximas-rodape">
+    Dúvidas? Entre em contato: brunosantos020@rioeduca.net · Tel: (21) 96892-0770 ·
+    CEP IFRJ: cep@ifrj.edu.br · (21) 3233-8034
+  </p>
+</footer>
+
 <!-- Modal TCLE -->
 <div class="modal-overlay open" id="tcle-overlay">
   <div class="tcle-box">
@@ -1598,6 +1769,23 @@
   </div>
 </div>
 
+<!-- Modal de agradecimento (exibido após envio da Entrevista) -->
+<div class="agradecimento-overlay" id="agradecimento-overlay">
+  <div class="agradecimento-box">
+    <div class="agr-icone">🎉</div>
+    <h2>Muito obrigado!</h2>
+    <p>Sua participação é fundamental para o desenvolvimento do programa <strong>PROSA</strong> e para a promoção da saúde na pós-graduação profissional.</p>
+    <p>Suas respostas foram registradas com sucesso e serão analisadas de forma <strong>sigilosa e anônima</strong>.</p>
+    <div class="agr-codigo" id="agr-codigo-display">—</div>
+    <p>Guarde este código — ele identifica sua participação na pesquisa.</p>
+    <p style="font-size:15px;margin-top:8px">Em breve você receberá informações sobre os próximos encontros presenciais e o desenvolvimento das <strong>Pílulas de Movimento</strong>.</p>
+    <button class="btn-fechar-agr" onclick="document.getElementById('agradecimento-overlay').classList.remove('open')">
+      Concluir participação ✓
+    </button>
+    <p class="agr-caae">CAAE 94355125.5.0000.5268 · Parecer 8.333.591 · ProfEPT/IFRJ – Campus Mesquita</p>
+  </div>
+</div>
+
 <!-- Modal de senha -->
 <div class="modal-overlay" id="modal-senha">
   <div class="modal-box">
@@ -1617,215 +1805,279 @@
 <div class="toast" id="toast">✓ Respostas registradas com sucesso</div>
 
 <script>
-  // ── Geração automática de código e data ──────────────────
-  function gerarCodigo() {
-    const hoje = new Date();
-    const yyyymmdd = hoje.toISOString().slice(0,10).replace(/-/g,'');
-    const rand = Math.floor(1000 + Math.random() * 9000);
-    return `PROSA-${yyyymmdd}-${rand}`;
-  }
+document.addEventListener('DOMContentLoaded', function() {
 
+  // ════════════════════════════════════════════════════════
+  // 1. CONFIGURAÇÕES GLOBAIS
+  // ════════════════════════════════════════════════════════
+  var SHEET_URL          = 'https://script.google.com/macros/s/AKfycbxc6-TvgyreT3ef2kC7pvsCTOK-OCuvF-YBn7dEDGGOoKOKsM1s0t_0xl-jFL1Iak5C/exec';
+  var SENHA_PESQUISADOR  = '38872095';
+  var STORAGE_KEY        = 'prosa_offline_queue';
+  var EMAIL_PARTICIPANTE = '';
+  var dadosPainel        = [];
+
+  // ════════════════════════════════════════════════════════
+  // 2. CÓDIGO E DATA AUTOMÁTICOS
+  // ════════════════════════════════════════════════════════
+  function gerarCodigo() {
+    var hoje = new Date();
+    var yyyymmdd = hoje.toISOString().slice(0,10).replace(/-/g,'');
+    var rand = Math.floor(1000 + Math.random() * 9000);
+    return 'PROSA-' + yyyymmdd + '-' + rand;
+  }
   function dataFormatada(d) {
     return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
   }
+  function dataISO(d) { return d.toISOString().slice(0,10); }
 
-  function dataISO(d) {
-    return d.toISOString().slice(0,10);
-  }
+  var CODIGO = gerarCodigo();
+  var HOJE   = new Date();
 
-  const CODIGO = gerarCodigo();
-  const HOJE   = new Date();
-
-  // Preencher Anexo I
   document.getElementById('display-codigo').textContent = CODIGO;
   document.getElementById('campo-codigo').value         = CODIGO;
   document.getElementById('display-data').textContent   = dataFormatada(HOJE);
   document.getElementById('campo-data').value           = dataISO(HOJE);
 
-  // Propagar para Entrevista e Avaliação
   function propagarId() {
-    document.querySelectorAll('.id-propagated').forEach(el => {
+    var nomeAtual = (document.querySelector('input[name="nome"]') || {}).value || '';
+    document.querySelectorAll('.id-propagated').forEach(function(el) {
       el.textContent = CODIGO;
-      const hidden = el.nextElementSibling;
-      if (hidden) hidden.value = CODIGO;
+      var h = el.nextElementSibling; if (h) h.value = CODIGO;
     });
-    document.querySelectorAll('.id-propagated-data').forEach(el => {
+    document.querySelectorAll('.id-propagated-data').forEach(function(el) {
       el.textContent = dataFormatada(HOJE);
-      const hidden = el.nextElementSibling;
-      if (hidden) hidden.value = dataISO(HOJE);
+      var h = el.nextElementSibling; if (h) h.value = dataISO(HOJE);
     });
-    // Propagar nome atual
-    const nomeAtual = document.querySelector('input[name="nome"]').value.trim();
-    document.querySelectorAll('.id-propagated-nome').forEach(el => {
+    document.querySelectorAll('.id-propagated-nome').forEach(function(el) {
       el.textContent = nomeAtual || '—';
-      const hidden = el.nextElementSibling;
-      if (hidden) hidden.value = nomeAtual;
+      var h = el.nextElementSibling; if (h) h.value = nomeAtual;
     });
   }
   propagarId();
 
-  // Atualizar nome em tempo real conforme digitação
-  document.querySelector('input[name="nome"]').addEventListener('input', propagarId);
-  // ─────────────────────────────────────────────────────────
+  var campoNomeEl = document.querySelector('input[name="nome"]');
+  if (campoNomeEl) campoNomeEl.addEventListener('input', propagarId);
 
-  // ── CÁLCULO AUTOMÁTICO DE IDADE ──────────────────────────
-  function calcularIdade() {
-    var nascimento = document.getElementById('campo-nascimento').value;
-    var campoIdade = document.getElementById('campo-idade');
-    if (!nascimento) { campoIdade.value = ''; return; }
-    var hoje = new Date();
-    var nasc  = new Date(nascimento);
-    var idade = hoje.getFullYear() - nasc.getFullYear();
-    var mes   = hoje.getMonth() - nasc.getMonth();
-    if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) idade--;
-    campoIdade.value = idade > 0 ? idade : '';
-  }
-  // ─────────────────────────────────────────────────────────
+  // ════════════════════════════════════════════════════════
+  // 3. CÁLCULO AUTOMÁTICO DE IDADE
+  // ════════════════════════════════════════════════════════
+  window.calcularIdade = function() {
+    var nasc = document.getElementById('campo-nascimento');
+    var idade = document.getElementById('campo-idade');
+    if (!nasc || !nasc.value) { if (idade) idade.value = ''; return; }
+    var hoje2 = new Date();
+    var n = new Date(nasc.value);
+    var a = hoje2.getFullYear() - n.getFullYear();
+    var m = hoje2.getMonth() - n.getMonth();
+    if (m < 0 || (m === 0 && hoje2.getDate() < n.getDate())) a--;
+    if (idade) idade.value = a > 0 ? a : '';
+  };
 
-  // ── TCLE — liberar aceite após leitura completa ──────────
-  (function() {
-    var corpo = document.querySelector('.tcle-corpo');
-    var aviso = document.getElementById('tcle-scroll-aviso');
-    var check = document.getElementById('tcle-aceite');
-    var btn   = document.getElementById('tcle-btn');
-
-    function verificarScroll() {
-      var margem = 40;
-      var chegouAoFim = corpo.scrollTop + corpo.clientHeight >= corpo.scrollHeight - margem;
-      if (chegouAoFim) {
-        check.disabled = false;
-        aviso.style.display = 'none';
-        corpo.removeEventListener('scroll', verificarScroll);
-      }
-    }
-    corpo.addEventListener('scroll', verificarScroll);
-
-    check.addEventListener('change', function() {
-      btn.disabled = !check.checked;
-      btn.style.opacity = check.checked ? '1' : '.5';
-      btn.style.cursor  = check.checked ? 'pointer' : 'not-allowed';
+  // ════════════════════════════════════════════════════════
+  // 4. CONDICIONAIS
+  // ════════════════════════════════════════════════════════
+  window.toggleCondicional = function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('visible');
+  };
+  window.hideCondicional = function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('visible');
+  };
+  document.querySelectorAll('input[name="area"]').forEach(function(r) {
+    r.addEventListener('change', function() {
+      var el = document.getElementById('area-outra');
+      if (el) el.classList.toggle('visible', r.value === 'outra' && r.checked);
     });
-  })();
+  });
 
-  function confirmarTCLE() {
-    document.getElementById('tcle-overlay').classList.remove('open');
-    iniciarLogin();
+  // ════════════════════════════════════════════════════════
+  // 5. BARRA DE PROGRESSO
+  // ════════════════════════════════════════════════════════
+  var ETAPAS = [
+    { aba: 'ipaq',       prog: 'prog-1', texto: 'Etapa 1 de 3 — Questionário de Atividade Física' },
+    { aba: 'anamnese',   prog: 'prog-2', texto: 'Etapa 2 de 3 — Questionário de Anamnese' },
+    { aba: 'entrevista', prog: 'prog-3', texto: 'Etapa 3 de 3 — Roteiro de Entrevista' },
+  ];
+
+  function atualizarProgresso(abaName) {
+    var barra = document.getElementById('progresso-bar');
+    var idx = ETAPAS.findIndex(function(e) { return e.aba === abaName; });
+    if (idx === -1) { if (barra) barra.style.display = 'none'; return; }
+    if (barra) barra.style.display = '';
+    ETAPAS.forEach(function(e, i) {
+      var el = document.getElementById(e.prog);
+      if (!el) return;
+      el.classList.remove('ativa','concluida');
+      if (i < idx) el.classList.add('concluida');
+      else if (i === idx) el.classList.add('ativa');
+    });
+    for (var i = 1; i <= 2; i++) {
+      var l = document.getElementById('linha-' + i);
+      if (l) l.classList.toggle('concluida', i <= idx);
+    }
+    var pt = document.getElementById('progresso-texto');
+    if (pt) pt.textContent = ETAPAS[idx].texto;
   }
 
-  // ── Controle de acesso restrito ──────────────────────────
-  // Senha do pesquisador — altere aqui conforme necessário
-  const SENHA_PESQUISADOR = '38872095';
+  // ════════════════════════════════════════════════════════
+  // 6. NAVEGAÇÃO DE ABAS
+  // ════════════════════════════════════════════════════════
+  window.showTab = function(name, btn) {
+    document.querySelectorAll('.form-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    var panel = document.getElementById('tab-' + name);
+    if (panel) panel.classList.add('active');
+    if (btn) btn.classList.add('active');
+    atualizarProgresso(name);
+  };
 
-  let _tabPendente  = null; // aba aguardando autenticação
-  let _btnPendente  = null; // botão aguardando autenticação
+  // ════════════════════════════════════════════════════════
+  // 7. TCLE
+  // ════════════════════════════════════════════════════════
+  var corpoTcle = document.querySelector('.tcle-corpo');
+  var avisoTcle = document.getElementById('tcle-scroll-aviso');
+  var checkTcle = document.getElementById('tcle-aceite');
+  var btnTcle   = document.getElementById('tcle-btn');
 
-  function solicitarSenha(tabName, btn) {
+  if (corpoTcle && checkTcle && btnTcle) {
+    corpoTcle.addEventListener('scroll', function verificar() {
+      if (corpoTcle.scrollTop + corpoTcle.clientHeight >= corpoTcle.scrollHeight - 40) {
+        checkTcle.disabled = false;
+        if (avisoTcle) avisoTcle.style.display = 'none';
+        corpoTcle.removeEventListener('scroll', verificar);
+      }
+    });
+    checkTcle.addEventListener('change', function() {
+      btnTcle.disabled = !checkTcle.checked;
+      btnTcle.style.opacity = checkTcle.checked ? '1' : '.5';
+      btnTcle.style.cursor  = checkTcle.checked ? 'pointer' : 'not-allowed';
+    });
+  }
+
+  window.confirmarTCLE = function() {
+    var overlay = document.getElementById('tcle-overlay');
+    if (overlay) overlay.classList.remove('open');
+    iniciarLogin();
+  };
+
+  // ════════════════════════════════════════════════════════
+  // 8. CONTROLE DE ACESSO (SENHA)
+  // ════════════════════════════════════════════════════════
+  var _tabPendente = null;
+  var _btnPendente = null;
+
+  window.solicitarSenha = function(tabName, btn) {
     _tabPendente = tabName;
     _btnPendente = btn;
-    document.getElementById('input-senha').value = '';
-    document.getElementById('modal-erro').textContent = '';
-    document.getElementById('modal-senha').classList.add('open');
-    setTimeout(() => document.getElementById('input-senha').focus(), 80);
-  }
+    var inp = document.getElementById('input-senha');
+    var err = document.getElementById('modal-erro');
+    if (inp) inp.value = '';
+    if (err) err.textContent = '';
+    var modal = document.getElementById('modal-senha');
+    if (modal) modal.classList.add('open');
+    setTimeout(function() { if (inp) inp.focus(); }, 80);
+  };
 
-  function fecharModal() {
-    document.getElementById('modal-senha').classList.remove('open');
-    _tabPendente = null;
-    _btnPendente = null;
-  }
+  window.fecharModal = function() {
+    var modal = document.getElementById('modal-senha');
+    if (modal) modal.classList.remove('open');
+    _tabPendente = null; _btnPendente = null;
+  };
 
-  function confirmarSenha() {
-    const digitada = document.getElementById('input-senha').value;
-    if (digitada === SENHA_PESQUISADOR) {
+  window.confirmarSenha = function() {
+    var inp = document.getElementById('input-senha');
+    var err = document.getElementById('modal-erro');
+    if (!inp) return;
+    if (inp.value === SENHA_PESQUISADOR) {
       fecharModal();
       showTab(_tabPendente, _btnPendente);
     } else {
-      document.getElementById('modal-erro').textContent = 'Senha incorreta. Tente novamente.';
-      document.getElementById('input-senha').value = '';
-      document.getElementById('input-senha').focus();
+      if (err) err.textContent = 'Senha incorreta. Tente novamente.';
+      inp.value = ''; inp.focus();
     }
-  }
+  };
 
-  // Fechar modal clicando fora
-  document.getElementById('modal-senha').addEventListener('click', function(e) {
-    if (e.target === this) fecharModal();
-  });
-  // ─────────────────────────────────────────────────────────
-
-  // ── CONDICIONAIS ─────────────────────────────────────────
-  function toggleCondicional(id) {
-    document.getElementById(id).classList.toggle('visible');
-  }
-  function hideCondicional(id) {
-    document.getElementById(id).classList.remove('visible');
-  }
-
-  // ── BARRA DE PROGRESSO ───────────────────────────────────
-  const ETAPAS_PARTICIPANTE = [
-    { aba: 'ipaq',      prog: 'prog-1', texto: 'Etapa 1 de 3 — Questionário de Atividade Física' },
-    { aba: 'anamnese',  prog: 'prog-2', texto: 'Etapa 2 de 3 — Questionário de Anamnese' },
-    { aba: 'entrevista',prog: 'prog-3', texto: 'Etapa 3 de 3 — Roteiro de Entrevista' },
-  ];
-  const ABAS_SEM_PROGRESSO = ['anamnese-b', 'avaliacao'];
-  let etapaAtual = 0;
-
-  function atualizarProgresso(abaName) {
-    const idx = ETAPAS_PARTICIPANTE.findIndex(e => e.aba === abaName);
-    const barraEl = document.getElementById('progresso-bar');
-    if (idx === -1) { barraEl.style.display = 'none'; return; }
-    barraEl.style.display = '';
-    etapaAtual = idx;
-    ETAPAS_PARTICIPANTE.forEach((e, i) => {
-      const el = document.getElementById(e.prog);
-      el.classList.remove('ativa','concluida');
-      if (i < idx)      el.classList.add('concluida');
-      else if (i === idx) el.classList.add('ativa');
+  var modalSenha = document.getElementById('modal-senha');
+  if (modalSenha) {
+    modalSenha.addEventListener('click', function(e) {
+      if (e.target === this) fecharModal();
     });
-    // linhas
-    for (let i = 1; i <= 2; i++) {
-      const l = document.getElementById('linha-' + i);
-      l.classList.toggle('concluida', i <= idx);
+    var inputSenha = document.getElementById('input-senha');
+    if (inputSenha) {
+      inputSenha.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') confirmarSenha();
+      });
     }
-    document.getElementById('progresso-texto').textContent = ETAPAS_PARTICIPANTE[idx].texto;
   }
 
-  // Abas
-  function showTab(name, btn) {
-    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    btn.classList.add('active');
-    atualizarProgresso(name);
+  // ════════════════════════════════════════════════════════
+  // 9. LOGIN DO PARTICIPANTE
+  // ════════════════════════════════════════════════════════
+  function iniciarLogin() {
+    var overlay    = document.getElementById('login-overlay');
+    var nomeInput  = document.getElementById('login-nome');
+    var emailInput = document.getElementById('login-email');
+    var erro       = document.getElementById('login-erro');
+    var btn        = document.getElementById('login-btn');
+    if (!overlay || !btn) return;
+
+    // Clonar botão para remover listeners anteriores
+    var btnNovo = btn.cloneNode(true);
+    btn.parentNode.replaceChild(btnNovo, btn);
+
+    function processarLogin() {
+      var nome  = nomeInput.value.trim();
+      var email = emailInput.value.trim();
+      var ok    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!nome)  { erro.textContent = 'Por favor, informe seu nome.'; return; }
+      if (!ok)    { erro.textContent = 'Informe um e-mail válido.'; return; }
+      EMAIL_PARTICIPANTE = email;
+      var campoNome2 = document.querySelector('input[name="nome"]');
+      if (campoNome2) { campoNome2.value = nome; propagarId(); }
+      overlay.classList.remove('open');
+    }
+
+    btnNovo.addEventListener('click', processarLogin);
+    if (emailInput) {
+      emailInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') processarLogin();
+      });
+    }
+    overlay.classList.add('open');
+    setTimeout(function() { if (nomeInput) nomeInput.focus(); }, 100);
   }
 
-  // ── VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS ─────────────────────
-  const CAMPOS_OBRIGATORIOS = {
+  // ════════════════════════════════════════════════════════
+  // 10. VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+  // ════════════════════════════════════════════════════════
+  var CAMPOS_OBRIGATORIOS = {
     'form-ipaq': [
-      { tipo: 'radio', nome: 'sexo',      label: 'Q1 – Sexo' },
-      { tipo: 'radio', nome: 'ipaq_q1',   label: 'Q2 – Dias de atividade vigorosa' },
-      { tipo: 'radio', nome: 'ipaq_q3',   label: 'Q4 – Dias de atividade moderada' },
-      { tipo: 'radio', nome: 'ipaq_q5',   label: 'Q6 – Dias de caminhada' },
+      { tipo: 'radio', nome: 'sexo',    label: 'Q1 – Sexo' },
+      { tipo: 'radio', nome: 'ipaq_q1', label: 'Q2 – Dias de atividade vigorosa' },
+      { tipo: 'radio', nome: 'ipaq_q3', label: 'Q4 – Dias de atividade moderada' },
+      { tipo: 'radio', nome: 'ipaq_q5', label: 'Q6 – Dias de caminhada' },
     ],
     'form-anamnese': [
-      { tipo: 'radio', nome: 'area',           label: 'Q10 – Área de formação' },
-      { tipo: 'radio', nome: 'tempo_prof',     label: 'Q11 – Tempo de atuação' },
-      { tipo: 'radio', nome: 'transporte',     label: 'Q13 – Meio de transporte' },
-      { tipo: 'radio', nome: 'h_mestrado',     label: 'Q14 – Horas no mestrado' },
-      { tipo: 'radio', nome: 'restricao',      label: 'Q15 – Restrição médica' },
+      { tipo: 'radio', nome: 'area',         label: 'Q10 – Área de formação' },
+      { tipo: 'radio', nome: 'tempo_prof',   label: 'Q11 – Tempo de atuação' },
+      { tipo: 'radio', nome: 'transporte',   label: 'Q13 – Meio de transporte' },
+      { tipo: 'radio', nome: 'h_mestrado',   label: 'Q14 – Horas no mestrado' },
+      { tipo: 'radio', nome: 'restricao',    label: 'Q15 – Restrição médica' },
     ],
   };
 
   function validarForm(form) {
-    const regras = CAMPOS_OBRIGATORIOS[form.id];
+    var regras = CAMPOS_OBRIGATORIOS[form.id];
     if (!regras) return true;
-    const faltando = [];
-    regras.forEach(r => {
-      if (r.tipo === 'radio') {
-        const marcado = form.querySelector('input[name="' + r.nome + '"]:checked');
-        if (!marcado) faltando.push(r.label);
+    var faltando = [];
+    regras.forEach(function(r) {
+      if (!form.querySelector('input[name="' + r.nome + '"]:checked')) {
+        faltando.push(r.label);
       }
     });
-    const msgEl = document.getElementById('val-' + form.id.replace('form-',''));
+    var msgId = 'val-' + form.id.replace('form-','');
+    var msgEl = document.getElementById(msgId);
     if (faltando.length > 0) {
       if (msgEl) {
         msgEl.textContent = '⚠ Responda antes de continuar: ' + faltando.join(' · ');
@@ -1838,78 +2090,115 @@
     return true;
   }
 
-  // ── SALVAMENTO OFFLINE (localStorage) ────────────────────
-  const STORAGE_KEY = 'prosa_offline_queue';
+  // ════════════════════════════════════════════════════════
+  // 11. COLETA DE DADOS DO FORMULÁRIO
+  // ════════════════════════════════════════════════════════
+  function coletarDados(form) {
+    var dados = {
+      email:      EMAIL_PARTICIPANTE,
+      formulario: form.id,
+      timestamp:  new Date().toISOString()
+    };
 
+    // Texto, número, date, hidden, textarea
+    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="hidden"], textarea').forEach(function(el) {
+      if (el.name && el.value !== '') dados[el.name] = el.value;
+    });
+
+    // Radio buttons
+    var radioGroups = {};
+    form.querySelectorAll('input[type="radio"]').forEach(function(el) {
+      if (!radioGroups[el.name]) radioGroups[el.name] = '';
+      if (el.checked) radioGroups[el.name] = el.value;
+    });
+    Object.keys(radioGroups).forEach(function(k) { dados[k] = radioGroups[k]; });
+
+    // Checkboxes
+    form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+      if (el.name) dados[el.name] = el.checked ? 'sim' : 'nao';
+    });
+
+    return dados;
+  }
+
+  // ════════════════════════════════════════════════════════
+  // 12. SALVAMENTO OFFLINE
+  // ════════════════════════════════════════════════════════
   function salvarOffline(dados) {
-    var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    fila.push(dados);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(fila));
+    try {
+      var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      fila.push(dados);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(fila));
+    } catch(e) {}
   }
 
   async function tentarReenviarOffline() {
-    var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    if (fila.length === 0) return;
-    var restantes = [];
-    for (var i = 0; i < fila.length; i++) {
-      try {
-        await fetch(SHEET_URL, {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(fila[i])
-        });
-      } catch (err) {
-        restantes.push(fila[i]);
+    try {
+      var fila = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      if (!fila.length) return;
+      var restantes = [];
+      for (var i = 0; i < fila.length; i++) {
+        try {
+          await fetch(SHEET_URL, { method:'POST', mode:'no-cors',
+            headers:{'Content-Type':'application/json'}, body: JSON.stringify(fila[i]) });
+        } catch(e) { restantes.push(fila[i]); }
       }
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(restantes));
-    if (restantes.length < fila.length) {
-      showToast('✓ ' + (fila.length - restantes.length) + ' resposta(s) offline sincronizada(s)');
-    }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(restantes));
+      if (restantes.length < fila.length)
+        showToast('✓ ' + (fila.length - restantes.length) + ' resposta(s) offline sincronizada(s)');
+    } catch(e) {}
   }
-
-  // Tentar reenviar ao recuperar conexão
   window.addEventListener('online', tentarReenviarOffline);
 
-  // ── ENVIO PARA GOOGLE SHEETS ─────────────────────────────
+  // ════════════════════════════════════════════════════════
+  // 13. ENVIO PARA GOOGLE SHEETS
+  // ════════════════════════════════════════════════════════
   async function enviarParaSheets(dados, btn) {
-    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
-      showToast('✓ Respostas registradas (modo local)');
-      return;
-    }
-    var textoOriginal = btn.textContent;
-    btn.textContent = 'Enviando…';
-    btn.disabled = true;
+    var textoOriginal = btn ? btn.textContent : '';
     try {
+      if (btn) { btn.textContent = 'Enviando…'; btn.disabled = true; }
       await fetch(SHEET_URL, {
-        method: 'POST', mode: 'no-cors',
+        method: 'POST',
+        mode:   'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dados)
+        body:    JSON.stringify(dados)
       });
-      showToast('✓ Respostas salvas na planilha com sucesso');
+      showToast('✓ Respostas salvas com sucesso');
     } catch (err) {
       salvarOffline(dados);
-      showToast('⚠ Sem conexão — respostas salvas localmente e serão enviadas automaticamente quando a internet voltar.');
+      showToast('⚠ Sem conexão — salvo localmente e será enviado quando a internet voltar');
     } finally {
-      btn.textContent = textoOriginal;
-      btn.disabled = false;
+      if (btn) { btn.textContent = textoOriginal; btn.disabled = false; }
     }
   }
 
-  // ── MAPA DE NAVEGAÇÃO AUTOMÁTICA ─────────────────────────
-  const PROXIMA_ABA = {
+  // ════════════════════════════════════════════════════════
+  // 14. NAVEGAÇÃO AUTOMÁTICA E SUBMIT
+  // ════════════════════════════════════════════════════════
+  var PROXIMA_ABA = {
     'form-ipaq':     { aba: 'anamnese',   label: 'Anexo II-A' },
-    'form-anamnese': { aba: 'entrevista', label: 'Anexo III' },
+    'form-anamnese': { aba: 'entrevista', label: 'Anexo III'  },
   };
 
-  // ── SUBMIT DE TODOS OS FORMULÁRIOS ───────────────────────
   document.querySelectorAll('form').forEach(function(form) {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       if (!validarForm(form)) return;
-      var btn = form.querySelector('.btn-submit');
+      var btn   = form.querySelector('.btn-submit');
       var dados = coletarDados(form);
       await enviarParaSheets(dados, btn);
+
+      // Exibir agradecimento ao concluir a entrevista
+      if (form.id === 'form-entrevista') {
+        var overlay = document.getElementById('agradecimento-overlay');
+        var codigoDisplay = document.getElementById('agr-codigo-display');
+        if (codigoDisplay) codigoDisplay.textContent = 'Código de participação: ' + CODIGO;
+        if (overlay) {
+          setTimeout(function() { overlay.classList.add('open'); }, 800);
+        }
+        return;
+      }
+
       var proximo = PROXIMA_ABA[form.id];
       if (proximo) {
         setTimeout(function() {
@@ -1922,314 +2211,159 @@
     });
   });
 
-  // Área "outra" condicional
-  document.querySelectorAll('input[name="area"]').forEach(r => {
-    r.addEventListener('change', () => {
-      const el = document.getElementById('area-outra');
-      el.classList.toggle('visible', r.value === 'outra' && r.checked);
-    });
-  });
-
-  // ── CONFIGURAÇÃO GOOGLE SHEETS ───────────────────────────
-  // Cole aqui a URL do seu Google Apps Script após seguir o guia
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxc6-TvgyreT3ef2kC7pvsCTOK-OCuvF-YBn7dEDGGOoKOKsM1s0t_0xl-jFL1Iak5C/exec';
-  // ─────────────────────────────────────────────────────────
-
-  // ── LOGIN DO PARTICIPANTE ────────────────────────────────
-  let EMAIL_PARTICIPANTE = '';
-
-  function iniciarLogin() {
-    var overlay   = document.getElementById('login-overlay');
-    var nomeInput = document.getElementById('login-nome');
-    var emailInput= document.getElementById('login-email');
-    var erro      = document.getElementById('login-erro');
-    var btn       = document.getElementById('login-btn');
-
-    // Remover listener anterior para evitar duplicatas
-    var btnNovo = btn.cloneNode(true);
-    btn.parentNode.replaceChild(btnNovo, btn);
-
-    function processarLogin() {
-      var nome  = nomeInput.value.trim();
-      var email = emailInput.value.trim();
-      var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      if (!nome)        { erro.textContent = 'Por favor, informe seu nome.'; return; }
-      if (!emailValido) { erro.textContent = 'Informe um e-mail válido.'; return; }
-
-      EMAIL_PARTICIPANTE = email;
-
-      var campoNome = document.querySelector('input[name="nome"]');
-      if (campoNome) { campoNome.value = nome; propagarId(); }
-
-      overlay.classList.remove('open');
-    }
-
-    btnNovo.addEventListener('click', processarLogin);
-    emailInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') processarLogin();
-    });
-
-    overlay.classList.add('open');
-    setTimeout(function() { nomeInput.focus(); }, 100);
-  }
-
-  // ── COLETA DE DADOS DO FORMULÁRIO ───────────────────────
-  function coletarDados(form) {
-    var dados = {
-      email:      EMAIL_PARTICIPANTE,
-      formulario: form.id,
-      timestamp:  new Date().toISOString()
-    };
-
-    // 1. Campos de texto, número, date, hidden
-    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="hidden"], textarea').forEach(function(el) {
-      if (el.name && el.value !== '') dados[el.name] = el.value;
-    });
-
-    // 2. Radio buttons — pega o marcado de cada grupo
-    var radioGroups = {};
-    form.querySelectorAll('input[type="radio"]').forEach(function(el) {
-      if (!radioGroups[el.name]) radioGroups[el.name] = null;
-      if (el.checked) radioGroups[el.name] = el.value;
-    });
-    Object.keys(radioGroups).forEach(function(k) {
-      dados[k] = radioGroups[k] !== null ? radioGroups[k] : '';
-    });
-
-    // 3. Checkboxes
-    form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
-      if (el.name) dados[el.name] = el.checked ? 'sim' : 'nao';
-    });
-
-    return dados;
-  }
-
-  // ── ENVIO PARA GOOGLE SHEETS ─────────────────────────────
-  async function enviarParaSheets(dados, btn) {
-    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
-      // Modo demonstração — sem URL configurada
-      showToast('✓ Respostas registradas (modo local)');
-      return;
-    }
-    const textoOriginal = btn.textContent;
-    btn.textContent = 'Enviando…';
-    btn.disabled = true;
+  // ════════════════════════════════════════════════════════
+  // 15. PAINEL DO PESQUISADOR
+  // ════════════════════════════════════════════════════════
+  window.carregarPainel = async function() {
+    var syncEl = document.getElementById('painel-sync');
+    if (syncEl) syncEl.textContent = 'Carregando…';
     try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dados)
-      });
-      showToast('✓ Respostas salvas na planilha com sucesso');
-    } catch (err) {
-      showToast('⚠ Erro ao enviar. Tente novamente.');
-    } finally {
-      btn.textContent = textoOriginal;
-      btn.disabled = false;
-    }
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg || '✓ Respostas registradas com sucesso';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-
-  // ── PAINEL DO PESQUISADOR ────────────────────────────────
-  var dadosPainel = [];
-
-  async function carregarPainel() {
-    document.getElementById('painel-sync').textContent = 'Carregando…';
-    if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
-      document.getElementById('painel-sync').textContent = 'Configure a URL do Apps Script primeiro.';
-      return;
-    }
-    try {
-      // Busca via GET com ?acao=listar
-      var url = SHEET_URL + '?acao=listar';
-      var resp = await fetch(url);
+      var resp = await fetch(SHEET_URL + '?acao=listar');
       var json = await resp.json();
       dadosPainel = json.dados || [];
       renderizarPainel(dadosPainel);
-      document.getElementById('painel-sync').textContent =
-        'Última atualização: ' + new Date().toLocaleTimeString('pt-BR');
-    } catch (err) {
-      document.getElementById('painel-sync').textContent = 'Erro ao carregar. Verifique a conexão.';
+      if (syncEl) syncEl.textContent = 'Atualizado: ' + new Date().toLocaleTimeString('pt-BR');
+    } catch(err) {
+      if (syncEl) syncEl.textContent = 'Erro ao carregar. Verifique a conexão.';
     }
-  }
+  };
 
   function renderizarPainel(dados) {
-    // Códigos únicos de participantes
     var codigos = [...new Set(dados.map(function(d) { return d.codigo || d.an_codigo || d.e_codigo || ''; }).filter(Boolean))];
-    var ipaq     = dados.filter(function(d) { return d.formulario === 'form-ipaq'; });
-    var anamnese = dados.filter(function(d) { return d.formulario === 'form-anamnese'; });
-    var entrev   = dados.filter(function(d) { return d.formulario === 'form-entrevista'; });
-
-    document.getElementById('pc-total').textContent     = codigos.length || '0';
-    document.getElementById('pc-ipaq').textContent      = ipaq.length || '0';
-    document.getElementById('pc-anamnese').textContent  = anamnese.length || '0';
-    document.getElementById('pc-entrevista').textContent= entrev.length || '0';
-
-    // Classificação IPAQ simplificada
+    var ipaq    = dados.filter(function(d) { return d.formulario === 'form-ipaq'; });
+    var ana     = dados.filter(function(d) { return d.formulario === 'form-anamnese'; });
+    var ent     = dados.filter(function(d) { return d.formulario === 'form-entrevista'; });
+    function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+    set('pc-total', codigos.length || '0');
+    set('pc-ipaq', ipaq.length || '0');
+    set('pc-anamnese', ana.length || '0');
+    set('pc-entrevista', ent.length || '0');
     renderizarBarras(ipaq);
     renderizarSexo(ipaq);
     renderizarTabela(dados, codigos);
   }
 
   function renderizarBarras(ipaq) {
-    var niveis = { 'Muito ativo': 0, 'Ativo': 0, 'Irregularmente ativo': 0, 'Sedentário': 0 };
-    var cores  = { 'Muito ativo': '#1E6B4A', 'Ativo': '#2D8B62', 'Irregularmente ativo': '#E07A30', 'Sedentário': '#c0392b' };
-
+    var niveis = { 'Muito ativo':0,'Ativo':0,'Irregularmente ativo':0,'Sedentário':0 };
+    var cores  = { 'Muito ativo':'#1E6B4A','Ativo':'#2D8B62','Irregularmente ativo':'#E07A30','Sedentário':'#c0392b' };
     ipaq.forEach(function(d) {
-      var vig  = (parseInt(d.ipaq_q1) || 0) * ((parseInt(d.ipaq_q2_h)||0)*60 + (parseInt(d.ipaq_q2_m)||0)) * 2;
-      var mod  = (parseInt(d.ipaq_q3) || 0) * ((parseInt(d.ipaq_q4_h)||0)*60 + (parseInt(d.ipaq_q4_m)||0));
-      var cam  = (parseInt(d.ipaq_q5) || 0) * ((parseInt(d.ipaq_q6_h)||0)*60 + (parseInt(d.ipaq_q6_m)||0));
-      var total = vig + mod + cam;
-      var diasVig = parseInt(d.ipaq_q1) || 0;
-      var diasMod = parseInt(d.ipaq_q3) || 0;
-      if (diasVig >= 3 && vig >= 1500) niveis['Muito ativo']++;
-      else if (total >= 3000 || (diasVig >= 5 && vig >= 1500)) niveis['Muito ativo']++;
-      else if (total >= 600) niveis['Ativo']++;
-      else if (total > 0)   niveis['Irregularmente ativo']++;
-      else                  niveis['Sedentário']++;
+      var vig = (parseInt(d.ipaq_q1)||0) * ((parseInt(d.ipaq_q2_h)||0)*60 + (parseInt(d.ipaq_q2_m)||0)) * 8;
+      var mod = (parseInt(d.ipaq_q3)||0) * ((parseInt(d.ipaq_q4_h)||0)*60 + (parseInt(d.ipaq_q4_m)||0)) * 4;
+      var cam = (parseInt(d.ipaq_q5)||0) * ((parseInt(d.ipaq_q6_h)||0)*60 + (parseInt(d.ipaq_q6_m)||0)) * 3.3;
+      var tot = vig + mod + cam;
+      var dv  = parseInt(d.ipaq_q1)||0;
+      var mv  = (parseInt(d.ipaq_q2_h)||0)*60 + (parseInt(d.ipaq_q2_m)||0);
+      if ((dv>=5 && mv>=30 && vig>=1500) || (tot>=3000 && dv>=3)) niveis['Muito ativo']++;
+      else if (tot>=600) niveis['Ativo']++;
+      else if (tot>0)    niveis['Irregularmente ativo']++;
+      else               niveis['Sedentário']++;
     });
-
     var total = ipaq.length || 1;
-    var html = '';
+    var html  = '';
     Object.keys(niveis).forEach(function(n) {
-      var pct = Math.round((niveis[n] / total) * 100);
-      html += '<div class="chart-barra-wrap">' +
-        '<div class="chart-label"><span>' + n + '</span><span>' + niveis[n] + ' (' + pct + '%)</span></div>' +
-        '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:' + pct + '%;background:' + cores[n] + '"></div></div>' +
-        '</div>';
+      var pct = Math.round(niveis[n]/total*100);
+      html += '<div class="chart-barra-wrap"><div class="chart-label"><span>'+n+'</span><span>'+niveis[n]+' ('+pct+'%)</span></div>' +
+              '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:'+pct+'%;background:'+cores[n]+'"></div></div></div>';
     });
-    document.getElementById('ipaq-chart-area').innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado IPAQ disponível.</p>';
+    var el = document.getElementById('ipaq-chart-area');
+    if (el) el.innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado disponível.</p>';
   }
 
   function renderizarSexo(dados) {
-    var contagem = { 'Masculino': 0, 'Feminino': 0, 'Não-binário': 0, 'Não declarado': 0 };
-    var cores    = { 'Masculino': '#2D6A9F', 'Feminino': '#8B5CF6', 'Não-binário': '#E07A30', 'Não declarado': '#9BA89A' };
-    var mapa     = { 'M': 'Masculino', 'F': 'Feminino', 'NB': 'Não-binário', 'ND': 'Não declarado' };
-    dados.forEach(function(d) { var k = mapa[d.sexo]; if (k) contagem[k]++; });
+    var cnt  = {'Masculino':0,'Feminino':0,'Não-binário':0,'Não declarado':0};
+    var cors  = {'Masculino':'#2D6A9F','Feminino':'#8B5CF6','Não-binário':'#E07A30','Não declarado':'#9BA89A'};
+    var mapa  = {'M':'Masculino','F':'Feminino','NB':'Não-binário','ND':'Não declarado'};
+    dados.forEach(function(d) { var k = mapa[d.sexo]; if (k) cnt[k]++; });
     var total = dados.length || 1;
-    var html = '';
-    Object.keys(contagem).forEach(function(n) {
-      if (contagem[n] === 0) return;
-      var pct = Math.round((contagem[n] / total) * 100);
-      html += '<div class="chart-barra-wrap">' +
-        '<div class="chart-label"><span>' + n + '</span><span>' + contagem[n] + ' (' + pct + '%)</span></div>' +
-        '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:' + pct + '%;background:' + cores[n] + '"></div></div>' +
-        '</div>';
+    var html  = '';
+    Object.keys(cnt).forEach(function(n) {
+      if (!cnt[n]) return;
+      var pct = Math.round(cnt[n]/total*100);
+      html += '<div class="chart-barra-wrap"><div class="chart-label"><span>'+n+'</span><span>'+cnt[n]+' ('+pct+'%)</span></div>' +
+              '<div class="chart-barra-bg"><div class="chart-barra-fill" style="width:'+pct+'%;background:'+cors[n]+'"></div></div></div>';
     });
-    document.getElementById('sexo-chart-area').innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado disponível.</p>';
+    var el = document.getElementById('sexo-chart-area');
+    if (el) el.innerHTML = html || '<p style="color:var(--cinza-3);text-align:center;padding:20px">Nenhum dado disponível.</p>';
   }
 
   function renderizarTabela(dados, codigos) {
     var tbody = document.getElementById('painel-tbody');
-    if (dados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--cinza-3);padding:20px">Nenhum dado coletado ainda.</td></tr>';
-      return;
-    }
-    // Uma linha por submissão
+    if (!tbody) return;
+    if (!dados.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--cinza-3);padding:20px">Nenhum dado coletado ainda.</td></tr>'; return; }
     tbody.innerHTML = dados.map(function(d) {
       var codigo = d.codigo || d.an_codigo || d.e_codigo || d.av_codigo || '—';
-      var nome   = d.nome || d.an_nome || d.e_nome || d.av_nome || '—';
-      var email  = d.email || '—';
-      var data   = d.data_avaliacao || d.an_data || d.e_data || d.timestamp ? d.timestamp.slice(0,10) : '—';
+      var nome   = d.nome   || d.an_nome   || d.e_nome   || d.av_nome   || '—';
+      var email  = d.email  || '—';
+      var data   = d.data_avaliacao || d.an_data || (d.timestamp ? d.timestamp.slice(0,10) : '—');
       var form   = (d.formulario || '—').replace('form-','').toUpperCase();
-      return '<tr>' +
-        '<td><code>' + codigo + '</code></td>' +
-        '<td>' + nome + '</td>' +
-        '<td>' + email + '</td>' +
-        '<td>' + data + '</td>' +
-        '<td>' + form + '</td>' +
-        '<td><button class="btn-pdf-linha" onclick="exportarPDFParticipante(\'' + codigo + '\')">📄 PDF</button></td>' +
-        '</tr>';
+      return '<tr><td><code>'+codigo+'</code></td><td>'+nome+'</td><td>'+email+'</td><td>'+data+'</td><td>'+form+'</td>' +
+             '<td><button class="btn-pdf-linha" onclick="exportarPDFParticipante(\'' + codigo + '\')">📄 PDF</button></td></tr>';
     }).join('');
   }
 
-  // ── EXPORTAÇÃO PDF ───────────────────────────────────────
-  function exportarPDF() {
-    var titulo = 'PROSA – Relatório Geral – ' + new Date().toLocaleDateString('pt-BR');
-    var conteudo = '<html><head><meta charset="UTF-8"><title>' + titulo + '</title>' +
-      '<style>body{font-family:Arial,sans-serif;padding:32px;color:#1A2119}' +
-      'h1{color:#1E6B4A;font-size:20px;border-bottom:2px solid #1E6B4A;padding-bottom:8px}' +
-      'h2{color:#2D8B62;font-size:15px;margin-top:24px}' +
-      'table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}' +
-      'th{background:#1E6B4A;color:#fff;padding:8px 10px;text-align:left}' +
-      'td{padding:7px 10px;border-bottom:1px solid #eee}' +
-      'tr:nth-child(even) td{background:#f7f8f6}' +
-      '.card{display:inline-block;border:1px solid #ccc;border-radius:8px;padding:12px 20px;margin:8px;text-align:center}' +
-      '.card-valor{font-size:28px;font-weight:700;color:#1E6B4A}' +
-      '.card-label{font-size:11px;color:#666;text-transform:uppercase}' +
-      '</style></head><body>' +
-      '<h1>PROSA – Programa de Promoção da Saúde Ativa</h1>' +
-      '<p style="font-size:12px;color:#666">Pesquisador: Bruno Cesar dos Santos · ProfEPT/IFRJ · CAAE 94355125.5.0000.5268</p>' +
-      '<p style="font-size:12px;color:#666">Relatório gerado em: ' + new Date().toLocaleString('pt-BR') + '</p>' +
-      '<h2>Resumo da Coleta</h2>' +
+  // ════════════════════════════════════════════════════════
+  // 16. EXPORTAÇÃO PDF
+  // ════════════════════════════════════════════════════════
+  window.exportarPDF = function() {
+    var cabecalho = '<html><head><meta charset="UTF-8"><title>PROSA – Relatório</title>' +
+      '<style>body{font-family:Arial,sans-serif;padding:32px;color:#1A2119}h1{color:#1E6B4A;font-size:18px;border-bottom:2px solid #1E6B4A;padding-bottom:8px}' +
+      'h2{color:#2D8B62;font-size:14px;margin-top:20px}table{width:100%;border-collapse:collapse;font-size:12px}' +
+      'th{background:#1E6B4A;color:#fff;padding:8px}td{padding:7px;border-bottom:1px solid #eee}.card{display:inline-block;border:1px solid #ccc;border-radius:8px;padding:12px 20px;margin:8px;text-align:center}' +
+      '.card-valor{font-size:28px;font-weight:700;color:#1E6B4A}.card-label{font-size:11px;color:#666;text-transform:uppercase}</style></head><body>' +
+      '<h1>PROSA – Relatório Geral</h1>' +
+      '<p style="font-size:11px;color:#666">Bruno Cesar dos Santos · ProfEPT/IFRJ · Gerado em: ' + new Date().toLocaleString('pt-BR') + '</p>' +
       '<div>' +
-      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-total').textContent) + '</div><div class="card-label">Participantes</div></div>' +
-      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-ipaq').textContent) + '</div><div class="card-label">IPAQ respondidos</div></div>' +
-      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-anamnese').textContent) + '</div><div class="card-label">Anamneses</div></div>' +
-      '<div class="card"><div class="card-valor">' + (document.getElementById('pc-entrevista').textContent) + '</div><div class="card-label">Entrevistas</div></div>' +
-      '</div>' +
-      '<h2>Lista de Participantes</h2>' +
-      '<table><thead><tr><th>Código</th><th>Nome</th><th>E-mail</th><th>Data</th><th>Formulário</th></tr></thead><tbody>' +
+      ['pc-total','pc-ipaq','pc-anamnese','pc-entrevista'].map(function(id) {
+        var el = document.getElementById(id);
+        var lb = {'pc-total':'Participantes','pc-ipaq':'IPAQ','pc-anamnese':'Anamneses','pc-entrevista':'Entrevistas'};
+        return '<div class="card"><div class="card-valor">'+(el?el.textContent:'0')+'</div><div class="card-label">'+lb[id]+'</div></div>';
+      }).join('') + '</div>' +
+      '<h2>Lista de Participantes</h2><table><thead><tr><th>Código</th><th>Nome</th><th>E-mail</th><th>Data</th><th>Formulário</th></tr></thead><tbody>' +
       dadosPainel.map(function(d) {
-        return '<tr><td>' + (d.codigo||d.an_codigo||d.e_codigo||'—') + '</td><td>' +
-          (d.nome||d.an_nome||d.e_nome||'—') + '</td><td>' +
-          (d.email||'—') + '</td><td>' +
-          (d.data_avaliacao||d.an_data||'—') + '</td><td>' +
-          (d.formulario||'—').replace('form-','').toUpperCase() + '</td></tr>';
-      }).join('') +
-      '</tbody></table></body></html>';
-    var janela = window.open('', '_blank');
-    janela.document.write(conteudo);
-    janela.document.close();
-    janela.print();
-  }
+        return '<tr><td>'+(d.codigo||'—')+'</td><td>'+(d.nome||'—')+'</td><td>'+(d.email||'—')+'</td><td>'+(d.data_avaliacao||'—')+'</td><td>'+(d.formulario||'—').replace('form-','').toUpperCase()+'</td></tr>';
+      }).join('') + '</tbody></table></body></html>';
+    var j = window.open('','_blank'); j.document.write(cabecalho); j.document.close(); j.print();
+  };
 
-  function exportarPDFParticipante(codigo) {
-    var registros = dadosPainel.filter(function(d) {
-      return (d.codigo || d.an_codigo || d.e_codigo || d.av_codigo) === codigo;
+  window.exportarPDFParticipante = function(codigo) {
+    var regs = dadosPainel.filter(function(d) {
+      return (d.codigo||d.an_codigo||d.e_codigo||d.av_codigo) === codigo;
     });
-    if (registros.length === 0) { showToast('Nenhum dado encontrado para este participante.'); return; }
-    var nome  = registros[0].nome || registros[0].an_nome || registros[0].e_nome || '—';
-    var email = registros[0].email || '—';
-    var conteudo = '<html><head><meta charset="UTF-8"><title>PROSA – ' + codigo + '</title>' +
-      '<style>body{font-family:Arial,sans-serif;padding:32px;color:#1A2119;font-size:13px}' +
-      'h1{color:#1E6B4A;font-size:18px;border-bottom:2px solid #1E6B4A;padding-bottom:8px}' +
-      'h2{color:#2D8B62;font-size:14px;margin-top:20px;margin-bottom:8px}' +
-      'table{width:100%;border-collapse:collapse;margin-top:8px}' +
-      'th{background:#f0f2f0;padding:7px 10px;text-align:left;font-size:11px;color:#666;border-bottom:1px solid #ccc}' +
-      'td{padding:7px 10px;border-bottom:1px solid #eee;word-break:break-word}' +
-      '</style></head><body>' +
+    if (!regs.length) { showToast('Nenhum dado encontrado.'); return; }
+    var nome = regs[0].nome || regs[0].an_nome || '—';
+    var html = '<html><head><meta charset="UTF-8"><title>PROSA – '+codigo+'</title>' +
+      '<style>body{font-family:Arial,sans-serif;padding:32px;font-size:13px}h1{color:#1E6B4A;font-size:16px}h2{color:#2D6A9F;font-size:13px;margin-top:18px}' +
+      'table{width:100%;border-collapse:collapse}th{background:#f0f0f0;padding:6px;font-size:11px;text-align:left}td{padding:6px;border-bottom:1px solid #eee;word-break:break-word}</style></head><body>' +
       '<h1>PROSA – Ficha do Participante</h1>' +
-      '<p><strong>Código:</strong> ' + codigo + ' &nbsp;|&nbsp; <strong>Nome:</strong> ' + nome + ' &nbsp;|&nbsp; <strong>E-mail:</strong> ' + email + '</p>' +
-      '<p style="font-size:11px;color:#999">Gerado em: ' + new Date().toLocaleString('pt-BR') + ' · CAAE 94355125.5.0000.5268</p>';
-
-    registros.forEach(function(r) {
-      conteudo += '<h2>' + (r.formulario||'').replace('form-','').toUpperCase() + '</h2>' +
-        '<table><thead><tr><th>Campo</th><th>Resposta</th></tr></thead><tbody>' +
-        Object.keys(r).filter(function(k) {
-          return !['email','formulario','timestamp','codigo','an_codigo','e_codigo','av_codigo',
-                   'nome','an_nome','e_nome','av_nome','an_data','e_data','av_data'].includes(k);
-        }).map(function(k) {
-          return '<tr><td>' + k + '</td><td>' + (r[k]||'—') + '</td></tr>';
-        }).join('') +
-        '</tbody></table>';
+      '<p><strong>Código:</strong> '+codigo+' | <strong>Nome:</strong> '+nome+'</p>' +
+      '<p style="font-size:11px;color:#999">Gerado em: '+new Date().toLocaleString('pt-BR')+'</p>';
+    regs.forEach(function(r) {
+      html += '<h2>'+r.formulario.replace('form-','').toUpperCase()+'</h2><table><tr><th>Campo</th><th>Resposta</th></tr>' +
+        Object.keys(r).filter(function(k) { return !['email','formulario','timestamp'].includes(k); })
+          .map(function(k) { return '<tr><td>'+k+'</td><td>'+(r[k]||'—')+'</td></tr>'; }).join('') + '</table>';
     });
-    conteudo += '</body></html>';
-    var janela = window.open('', '_blank');
-    janela.document.write(conteudo);
-    janela.document.close();
-    janela.print();
+    html += '</body></html>';
+    var j = window.open('','_blank'); j.document.write(html); j.document.close(); j.print();
+  };
+
+  // ════════════════════════════════════════════════════════
+  // 17. TOAST
+  // ════════════════════════════════════════════════════════
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg || '✓ Respostas registradas';
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 3500);
   }
 
-  // Login é iniciado após confirmação do TCLE (função confirmarTCLE)
+  // ════════════════════════════════════════════════════════
+  // 18. INICIALIZAÇÃO — exibir TCLE ao carregar
+  // ════════════════════════════════════════════════════════
+  var tcleOverlay = document.getElementById('tcle-overlay');
+  if (tcleOverlay) tcleOverlay.classList.add('open');
+
+}); // fim DOMContentLoaded
 </script>
 </body>
 </html>
